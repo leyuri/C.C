@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title= competition.title
+
+    .competition.show
+      include _competition
+
+      .buttons
+        button.btn.btn-outline-warning #[i.fa.fa-thumbs-up ] Like
+        | 
+        a.btn.btn-outline-secondary(href=`/competitions/${competition.id}/edit`) Edit
+        | 
+        a.btn.btn-outline-danger.delete-btn(href="#", data-url=`/competitions/${competition.id}?_method=delete`) Delete
+      
+    if competition.numAnswers > 0
+      hr
+      h3 #{competition.numAnswers} Answer(s)
+      .answers.show
+        each answer in answers
+          include _answer
+
+    form(action=`/competitions/${competition.id}/answers`, method='POST')
+      .form-group
+        label(for='answer') Your Answer
+        textarea.form-control(name="content", rows="5")
+      button.btn.btn-outline-warning(type="submit") Post Your Answer
+
+  script.
+    $(function() {
+      $('.delete-btn').click(function() {
+        if (confirm('Are you sure to delete?')) {
+          location = $(this).data('url');
+        }
+        return false;
+      });
+    });

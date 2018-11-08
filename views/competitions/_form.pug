@@ -1,0 +1,36 @@
+.form-group
+  label(for="title") Title
+  input.form-control(type="text", name="title", placeholder="What's your competition?", value=competition.title)
+.form-group
+  label(for="competition") Competition
+  textarea.form-control(name="content", rows="5")= competition.content
+.form-group
+  label(for="tags") Tags
+  input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
+//- .form-group
+//- label(for="title") 이름
+//- input.form-control(type="text", name="title", placeholder="What's your competition?", value=competition.title)
+//- .form-group
+//- label(for="competition") 주최사
+//- textarea.form-control(name="content", rows="5")= competition.content
+//- .form-group
+//- label(for="tags") 분야
+//- input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
+
+//- .form-group
+//- label(for="title") 응시대상
+//- input.form-control(type="text", name="title", placeholder="What's your competition?", value=competition.title)
+//- .form-group
+//- label(for="competition") 접수기간
+//- textarea.form-control(name="content", rows="5")= competition.content
+//- .form-group
+//- label(for="tags") 공모요강
+//- input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
+//- .form-group
+//- label(for="tags") 담당자
+//- input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
+
+//- .form-group
+//- label(for="tags") 연락처
+//- input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
+//- |

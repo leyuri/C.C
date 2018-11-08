@@ -1,0 +1,31 @@
+extends ../layout
+
+include ../includes/_paginate
+
+block content
+  .container
+    form.form-inline.search-input-group(action='/competitions', method='GET')
+      i.fa.fa-search
+      input.form-control.mr-sm-2(type='text', name='term', placeholder='Search', aria-label='Search', value=term)
+
+    h1.main-title 
+      | Competitions
+      if competitions.total > 0
+        .small Total #{competitions.total} competition(s)
+
+    if competitions.total <= 0 
+      .alert.alert-info No competitions available yet
+    else
+      .competitions
+        each competition in competitions.docs
+          .competition
+            a.title(href=`/competitions/${competition.id}`, style='color:black')= competition.title
+            include _competition
+
+      +paginate(competitions, '/competitions', query)
+
+    hr
+    a.btn.btn-outline-warning(href='/competitions/new') 공모전 등록하기
+
+
+//- a.title(href='/competitions/5be46850c7fa6009e4755570', style='font-color:black') [한이음 공모전 2018] SAI 빅 데이터를 활용한 약속장소 및 주변 힙플레스 추천

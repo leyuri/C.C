@@ -3,7 +3,12 @@
   input.form-control(type="text", name="title", placeholder="What's your competition?", value=competition.title)
 .form-group
   label(for="content") 공모요강
-  textarea.form-control(name="content", rows="5")= competition.content
+  textarea.form-control.summernote(name="content")= competition.content
+//- .form-group
+//-   .summernote summernote 1
+//- 수정필요
+
+
 .form-group
   label(for="field") 분야 &nbsp;
   select.form-control(name="field")= competition.field
@@ -98,6 +103,42 @@
 
 |
 br
+
+script.
+  $(document).ready(function() {
+  $('.summernote').summernote({
+    height : 200
+    //focus : true,
+   // lang : 'ko-KR'
+      });
+    });
+
+//- script.
+//-   $(document).ready(function() {
+//-     $('#summernote').summernote({
+//-     height : 300, // 에디터의 높이
+//-     minHeight : null,
+//-     maxHeight : null,
+//-     focus : true,
+//-     lang : 'ko-KR' // 기본 메뉴언어 US->KR로 변경
+//-     });
+//-     });
+//-     var postForm = function() {
+//-     var contents =  $('textarea[name="contents"]').html($('#summernote').code());
+//-     }
+//- script.
+//-     $(document).ready(function() {
+//-     $('#summernote').summernote({
+//-     height : 300, // 에디터의 높이
+//-     minHeight : null,
+//-     maxHeight : null,
+//-     focus : true,
+//-     lang : 'ko-KR' // 기본 메뉴언어 US->KR로 변경
+//-     });
+//-     });
+//-     var postForm = function() {
+//-     var contents =  $('textarea[name="contents"]').html($('#summernote').code());
+//-     }
 
 //- script.
 //-   var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());

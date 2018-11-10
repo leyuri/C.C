@@ -15,3 +15,5 @@ var schema = new Schema({
 var Declare = mongoose.model('Declare', schema);
 
 module.exports = Declare;
+
+//내가 저장 안하고 커밋했나..;;작동법 제대로 익히자

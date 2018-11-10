@@ -2,9 +2,45 @@ extends ../layout
 
 block content
   .container
-    h1.main-title New Competition
+    h1.main-title 공모전 등록하기
     form(action="/competitions", method="POST")
       include _form
-      button.btn.btn-outline-primary(type="submit") Post Your Competition
+      button.btn.btn-outline-primary(type="submit") 등록하기
+      |
+      br
+      |
+      br
 
-    
+
+  //- script(type='text/javascript').
+  //-   $(function () {
+  //-   $('#datetimepicker6').datetimepicker();
+  //-   $('#datetimepicker7').datetimepicker({
+  //-   useCurrent: false //Important! See issue #1075
+  //-   });
+  //-   $("#datetimepicker6").on("dp.change", function (e) {
+  //-   $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+  //-   });
+  //-   $("#datetimepicker7").on("dp.change", function (e) {
+  //-   $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+  //-   });
+  //-   });
+
+
+  script.
+    var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    $('#startDate').datepicker({
+    uiLibrary: 'bootstrap4',
+    iconsLibrary: 'fontawesome',
+    minDate: today,
+    maxDate: function () {
+    return $('#endDate').val();
+    }
+    });
+    $('#endDate').datepicker({
+    uiLibrary: 'bootstrap4',
+    iconsLibrary: 'fontawesome',
+    minDate: function () {
+    return $('#startDate').val();
+    }
+    });

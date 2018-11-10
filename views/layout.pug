@@ -9,12 +9,38 @@ html
     script(src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js')
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', rel='stylesheet', integrity='sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN', crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js', type='text/javascript')
+    link(href='https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css', rel='stylesheet', type='text/css')
+
+    //- script(type='text/javascript', src='/bower_components/jquery/jquery.min.js')
+    //- script(type='text/javascript', src='/bower_components/moment/min/moment.min.js')
+    //- script(type='text/javascript', src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+    //- script(type='text/javascript', src='/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
+    //- link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+    //- link(rel='stylesheet', href='/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
+    //- script(type='text/javascript', src='/path/to/jquery.js')
+    //- script(type='text/javascript', src='/path/to/moment.js')
+    //- script(type='text/javascript', src='/path/to/bootstrap/js/transition.js')
+    //- script(type='text/javascript', src='/path/to/bootstrap/js/collapse.js')
+    //- script(type='text/javascript', src='/path/to/bootstrap/dist/bootstrap.min.js')
+    //- script(type='text/javascript', src='/path/to/bootstrap-datetimepicker.min.js')
+
+
+  
   body
     block top-nav
       include ./includes/topnav 
       //- 별도의 파일로 빼놓은 것이다.
     block hero-unit
+
     if flashMessages
+      |
+      br
+      |
+      br
       each texts, type in flashMessages
         .container
           .alert.alert-dismissible.fade.show(class=`alert-${type}`) 
@@ -22,6 +48,10 @@ html
               | #{msg} 
             button.close(type='button', data-dismiss='alert', aria-label='close')
               span(aria-hidden='true') &times;
+    //- |
+    //- br
+    //- |
+    //- br
     block content
 
     block footer

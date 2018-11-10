@@ -1,36 +1,74 @@
 .form-group
-  label(for="title") Title
+  label(for="title") 공모전명
   input.form-control(type="text", name="title", placeholder="What's your competition?", value=competition.title)
 .form-group
-  label(for="competition") Competition
+  label(for="competition") 공모요강
   textarea.form-control(name="content", rows="5")= competition.content
 .form-group
-  label(for="tags") Tags
+  label(for="sponsor") 주최사
+  input.form-control(type="text", name="sponsor", placeholder="What's your sponsor?", value=competition.sponsor)
+.form-group
+  label(for="field") 분야
+  input.form-control(type="text", name="field", placeholder="What's your field?", value=competition.field)
+.form-group
+  label(for="participant") 응시대상
+  input.form-control(type="text", name="participant", placeholder="What's your participant?", value=competition.participant)
+.form-group
+  label(for="period") 접수기간
+      |
+      br
+      |
+      br
+      | Start Date: 
+      input#startDate(width='276')
+      |         End Date: 
+      input#endDate(width='276')
+      //- input.form-control(type="text", name="period", placeholder="What's your period?", value=competition.period)
+
+
+
+
+
+
+.form-group
+  label(for="person") 담당자
+  input.form-control(type="text", name="person", placeholder="What's your person?", value=competition.person)
+.form-group
+  label(for="contact") 연락처
+  input.form-control(type="text", name="contact", placeholder="What's your contact?", value=competition.title)
+.form-group
+  label(for="tags") 태그
   input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
-//- .form-group
-//- label(for="title") 이름
-//- input.form-control(type="text", name="title", placeholder="What's your competition?", value=competition.title)
-//- .form-group
-//- label(for="competition") 주최사
-//- textarea.form-control(name="content", rows="5")= competition.content
-//- .form-group
-//- label(for="tags") 분야
-//- input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
+|
+br
 
-//- .form-group
-//- label(for="title") 응시대상
-//- input.form-control(type="text", name="title", placeholder="What's your competition?", value=competition.title)
-//- .form-group
-//- label(for="competition") 접수기간
-//- textarea.form-control(name="content", rows="5")= competition.content
-//- .form-group
-//- label(for="tags") 공모요강
-//- input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
-//- .form-group
-//- label(for="tags") 담당자
-//- input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
+//- script.
+//-   var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+//-   $('#startDate').datepicker({
+//-   uiLibrary: 'bootstrap4',
+//-   iconsLibrary: 'fontawesome',
+//-   minDate: today,
+//-   maxDate: function () {
+//-   return $('#endDate').val();
+//-   }
+//-   });
+//-   $('#endDate').datepicker({
+//-   uiLibrary: 'bootstrap4',
+//-   iconsLibrary: 'fontawesome',
+//-   minDate: function () {
+//-   return $('#startDate').val();
+//-   }
+//-   });
 
-//- .form-group
-//- label(for="tags") 연락처
-//- input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
-//- |
+    //- .col-md-5
+    //-   .form-group
+    //-     #datetimepicker6.input-group.date
+    //-       input.form-control(type='text')
+    //-       span.input-group-addon
+    //-         span.glyphicon.glyphicon-calendar
+    //- .col-md-5
+    //-   .form-group
+    //-     #datetimepicker7.input-group.date
+    //-       input.form-control(type='text')
+    //-       span.input-group-addon
+    //-         span.glyphicon.glyphicon-calendar

@@ -16,16 +16,16 @@ block content
       
     if competition.numAnswers > 0
       hr
-      h3 #{competition.numAnswers} Answer(s)
+      h3 댓글 (#{competition.numAnswers})
       .answers.show
         each answer in answers
           include _answer
 
     form(action=`/competitions/${competition.id}/answers`, method='POST')
       .form-group
-        label(for='answer') Your Answer
+        label(for='answer') 나의 댓글
         textarea.form-control(name="content", rows="5")
-      button.btn.btn-outline-warning(type="submit") Post Your Answer
+      button.btn.btn-outline-warning(type="submit") 댓글달기
 
   script.
     $(function() {
@@ -36,3 +36,8 @@ block content
         return false;
       });
     });
+
+  |
+  br
+  |
+  br

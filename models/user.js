@@ -6,6 +6,9 @@ var schema = new Schema({
   email: {type: String, required: true, index: true, unique: true, trim: true},
   //unique는 몽고디비가 알아서 처리해준다. 중복없이
   password: {type: String},
+  address: {type: String},
+  sex: {type: String},
+  birthday: {type: String},
   createdAt: {type: Date, default: Date.now}
   //생성 날짜
 }, {

@@ -11,6 +11,17 @@ block content
         label(for='email') Email address
         input.form-control(type='email', id='email', name='email', placeholder='Email', value=user.email)
       .form-group
+        label(for='name') address
+        input.form-control(type='text', id='address', name='address', placeholder='Your address', value=user.address)
+      .form-group
+        label(for='name') sex
+        input.form-control(type='text', id='sex', name='sex', placeholder='Your sex', value=user.sex)
+      .form-group
+        label(for='name') birthday
+        input.form-control(type='text', id='birthday', name='birthday', placeholder='Your birthday', value=user.birthday)        
+
+      
+      .form-group
         label(for='current_password') Current Password
         input.form-control(type='password', id='current_password', name='current_password', placeholder='Current Password')
       .form-group
@@ -22,6 +33,10 @@ block content
       a.btn.btn-outline-secondary(href='javascript:window.history.back();') Back 
       | 
       button.btn.btn-outline-warning(type='submit') Update
+      |
+      br
+      |
+      br
 
 
 

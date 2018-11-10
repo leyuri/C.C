@@ -17,9 +17,21 @@ block content
       .form-group
         label(for='password_confirmation') Password Confirmation
         input.form-control(type='password', id='password_confirmation', name='password_confirmation', placeholder='Password')
-
+      .form-group
+        label(for='address') address
+        input.form-control(type='text', id='address', name='address', placeholder='address')
+      .form-group
+        label(for='sex') sex
+        input.form-control(type='text', id='sex', name='sex', placeholder='Your sex')
+      .form-group
+        label(for='birthday') birthday
+        input.form-control(type='text', id='birthday', name='birthday', placeholder='Your birthday')
        
       a.btn.btn-outline-secondary(href='/users') List
       | 
       button.btn.btn-outline-warning(type='submit') Register 
+      |
+      br
+      |
+      br
        

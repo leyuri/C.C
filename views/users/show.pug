@@ -9,6 +9,15 @@ block content
       dd.col-sm-9
         a(href=`mailto:${user.email}`, style='color:black')= user.email
 
+      dt.col-sm-3 address
+      dd.col-sm-9
+        a(href=`mailto:${user.address}`, style='color:black')= user.address
+      dt.col-sm-3 sex
+      dd.col-sm-9
+        a(href=`mailto:${user.sex}`, style='color:black')= user.sex
+      dt.col-sm-3 birthday
+      dd.col-sm-9
+        a(href=`mailto:${user.birthday}`, style='color:black')= user.birthday
       dt.col-sm-3 Created At
       dd.col-sm-9= user.createdAt
 

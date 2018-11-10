@@ -16,10 +16,16 @@ function needAuth(req, res, next) {
 function validateForm(form, options) {
   var name = form.name || "";
   var email = form.email || "";
-  name = name.trim();
-  //trim()은 문자열 앞과 뒤 공백을 제거하는 함수
-  email = email.trim();
+  var address = form.address || "";
+  var sex = form.sex || "";
+  var birthday = form.birthday || "";
 
+  name = name.trim();
+  email = email.trim();
+  address = address.trim();
+  sex = sex.trim();
+  birthday = birthday.trim();
+//trim()은 문자열 앞과 뒤 공백을 제거하는 함수
   if (!name) {
     return 'Name is required.';
     //이름을 입력하지 않은 경우
@@ -27,6 +33,18 @@ function validateForm(form, options) {
 
   if (!email) {
     return 'Email is required.';
+  }
+
+  if (!address) {
+    return 'address is required.';
+  }
+
+  if (!sex) {
+    return 'sex is required.';
+  }
+
+  if (!birthday) {
+    return 'birthday is required.';
   }
 
   if (!form.password && options.needPassword) {
@@ -104,6 +122,9 @@ router.put('/:id', needAuth, (req, res, next) => {
 
     user.name = req.body.name;
     user.email = req.body.email;
+    user.address = req.body.address;
+    user.sex = req.body.sex;
+    user.birthday = req.body.birthday;
     if (req.body.password) {
       user.password = req.body.password;
     }
@@ -161,6 +182,9 @@ router.post('/', (req, res, next) => {
     var newUser = new User({
       name: req.body.name,
       email: req.body.email,
+      address: req.body.address,
+      sex: req.body.sex,
+      birthday: req.body.birthday,
     });
     newUser.password = req.body.password;
 

@@ -8,12 +8,18 @@ block content
       include _competition
 
       .buttons
-        button.btn.btn-outline-warning #[i.fa.fa-thumbs-up ] Like
+        button.btn.btn-outline-warning #[i.fa.fa-thumbs-up ] 좋아요
         | 
-        a.btn.btn-outline-secondary(href=`/competitions/${competition.id}/edit`) Edit
+        a.btn.btn-outline-secondary(href=`/competitions/${competition.id}/edit`) 편집
         | 
-        a.btn.btn-outline-danger.delete-btn(href="#", data-url=`/competitions/${competition.id}?_method=delete`) Delete
-      
+        a.btn.btn-outline-danger.delete-btn(href="#", data-url=`/competitions/${competition.id}?_method=delete`) 삭제
+        |
+        |
+        a.btn.btn-outline-primary(href=`/competitions/${competition.id}/edit`) 페이스북
+        | 
+        a.btn.btn-outline-info.delete-btn(href="#", data-url=`/competitions/${competition.id}?_method=delete`) 트위터
+        | 
+        a.btn.btn-outline-danger.delete-btn(href="#", data-url=`/competitions/${competition.id}?_method=delete`) 신고
     if competition.numAnswers > 0
       hr
       h3 댓글 (#{competition.numAnswers})

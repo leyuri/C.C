@@ -2,43 +2,100 @@
   label(for="title") 공모전명
   input.form-control(type="text", name="title", placeholder="What's your competition?", value=competition.title)
 .form-group
-  label(for="competition") 공모요강
+  label(for="content") 공모요강
   textarea.form-control(name="content", rows="5")= competition.content
 .form-group
-  label(for="sponsor") 주최사
-  input.form-control(type="text", name="sponsor", placeholder="What's your sponsor?", value=competition.sponsor)
+  label(for="field") 분야 &nbsp;
+  select.form-control(name="field")= competition.field
+    option(value="Planning / Ideas") 기획/아이디어
+    option(value="Advertising / Marketing") 광고/마케팅
+    option(value="Articles / Reports") 논문/리포트
+    option(value="Video / UCC / Photo") 영상/UCC/사진
+    option(value="Design / Character / Webtoon") 디자인/캐릭터/웹툰
+    option(value="Web / Mobile / Flash") 웹/모바일/플래시
+    option(value="Games / Software")  게임/소프트웨어
+    option(value="Science / Engineering") 과학/공학
+    option(value="Literature / Writing / Scenario") 문학/글/시나리오
+    option(value="Architecture / Construction / Interior") 건축/건설/인테리어
+    option(value="Arts / Music / Entertainment") 예체능/미술/음악
+    option(value="External Activities / Supporters") 대외활동/서포터즈
+    option(value="Volunteer") 봉사활동
+    option(value="Employment / Startup")  취업/창업
+    option(value="Overseas") 해외
+    option(value="Others")  기타
 .form-group
-  label(for="field") 분야
-  input.form-control(type="text", name="field", placeholder="What's your field?", value=competition.field)
+  label(for="participant") 응시대상 &nbsp;
+  select.form-control(name="participant")= competition.participant
+    option(value="No limit") 제한없음
+    option(value="Public") 일반인
+    option(value="College") 대학생/대학원생
+    option(value="Youth") 청소년
+    option(value="child") 어린이
+    option(value="Others") 기타
 .form-group
-  label(for="participant") 응시대상
-  input.form-control(type="text", name="participant", placeholder="What's your participant?", value=competition.participant)
+  label(for="sponsor") 주최사 &nbsp;
+  select.form-control(name="sponsor")= competition.sponsor
+    option(value="Government / Public institutions") 정부/공공기관
+    option(value="Public enterprise") 공기업
+    option(value="major company") 대기업
+    option(value="Newspaper / Broadcast / Press") 신문/방송/언론
+    option(value="Foreign companies") 외국계기업
+    option(value="Medium / Small / Venture Companies") 중견/중소/벤처기업
+    option(value="Nonprofit / Association / Foundation") 비영리/협회/재단
+    option(value="Overseas") 해외
+    option(value="Others") 기타
 .form-group
-  label(for="period") 접수기간
-      |
-      br
-      |
-      br
-      | Start Date: 
-      input#startDate(width='276')
-      |         End Date: 
-      input#endDate(width='276')
+  label(for="award") 시상내역 &nbsp;
+  select.form-control(name="award")= competition.award
+    option(value="5000") 5천만원이상
+    option(value="5000~3000") 5천만원 ~ 3천만원
+    option(value="3000~1000") 3천만원 ~ 1천만원
+    option(value="1000") 1천만원이하
+    option(value="Employment benefits") 취업특전
+    option(value="Addition to entrance examination") 입시가산점
+    option(value="Intern") 인턴채용
+    option(value="Full-time employee") 정직원채용
+    option(value="Others") 기타
+
+.form-group
+  label(for="startTime") 접수시작
+  input.form-control(type="datetime-local", name="startTime", value=competition.startTime)
+.form-group
+  label(for="endTime") 접수종료
+  input.form-control(type="datetime-local", name="endTime", value=competition.endTime)
+
+
+//- .form-group
+//-   label(for="period") 접수기간
+//-       |
+//-       br
+//-       |
+//-       br
+//-       | Start Date: 
+//-       input#startDate(width='276')
+//-       |         End Date: 
+//-       input#endDate(width='276')
       //- input.form-control(type="text", name="period", placeholder="What's your period?", value=competition.period)
+.form-group
+  label(for="tags") 태그
+  input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
+.form-group
+  label(for='exampleInputFile') 포스터 
+  input#exampleInputFile.form-control-file(type='file', aria-describedby='fileHelp')
+  small#fileHelp.form-text.text-muted
+    | 포스터가 있을 경우 파일을 첨부해주세요.
 
-
-
-
-
-
+.form-group
+  label(for="hompage") 홈페이지
+  input.form-control(type="text", name="hompage", placeholder="hompage url?", value=competition.hompage)
 .form-group
   label(for="person") 담당자
   input.form-control(type="text", name="person", placeholder="What's your person?", value=competition.person)
 .form-group
   label(for="contact") 연락처
   input.form-control(type="text", name="contact", placeholder="What's your contact?", value=competition.title)
-.form-group
-  label(for="tags") 태그
-  input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
+
+
 |
 br
 

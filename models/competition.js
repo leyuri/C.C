@@ -13,14 +13,14 @@ var schema = new Schema({
   numLikes: {type: Number, default: 0},
   numAnswers: {type: Number, default: 0},
   numReads: {type: Number, default: 0},
-  competitionType: {type: String, trim: true, required: true},
-  participant: {type: String, trim: true, required: true},
-  field: {type: String, trim: true, required: true},
-  startTime: {type: String, trim: true, required: true},
-  endTime: {type: String, trim: true, required: true},
-  sponsor: {type: String, trim: true, required: true},
-  award: {type: String, trim: true, required: true},
-  image: { data: Buffer, contentType: String },
+  // competitionType: {type: String, trim: true, required: true},
+  participant: {type: String, trim: true, required: false},
+  field: {type: String, trim: true, required: false},
+  startTime: {type: String, trim: true, required: false},
+  endTime: {type: String, trim: true, required: false},
+  sponsor: {type: String, trim: true, required: false},
+  award: {type: String, trim: true, required: false},
+  image: { data: Buffer, contentType: String,required: false},
   
   createdAt: {type: Date, default: Date.now}  //만들어진 날짜
 }, {

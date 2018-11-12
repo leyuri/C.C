@@ -1,24 +1,15 @@
-.answer.card
-  .numbers.like-badge
-    .number
-      span.number.num-votes= competition.numLikes
-    .button
-      a.like(href='#', data-id=answer.id)
-        i.fa.fa-thumbs-up
-        | 
-        | Like
-            &nbsp;
-        i.fa.fa-thumbs-down
-        | 
-        | UnLike
+extends ../layout
 
-  .card-body
-    .content= answer.content
-  .row.card-body
-    .col-sm
-    .col-sm.text-right
-      .author
-        | answered on #{moment(answer.createdAt).format('YYYY-MM-DD')}
-        if answer.author
-          | 
-          | by #[a(href=`/users/${answer.author.id}`, style='color:black')= answer.author.name]
+block content
+  .container
+    h1.main-title 신고하기
+    form(action=`/competitions/${competition.id}/declares`, method="POST")
+      .form-group
+        label(for="declare_reason") 신고사유
+        input.form-control(type="text", name="survey_reason")      
+      button.btn.btn-outline-primary(type="submit") 제출
+      br
+      br
+
+
+//- 수정필요

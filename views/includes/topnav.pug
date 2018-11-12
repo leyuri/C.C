@@ -1,26 +1,33 @@
 .header.clearfix
-  nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
-    .container
-      .b
-        a.navbar-brand(href="/") Competition Collection 
-        button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarsExampleDefault", aria-controls="navbarsExampleDefault", aria-expanded="false", aria-label="Toggle navigation")
-          span.navbar-toggler-icon
+    nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+      
+        .container
+          
+            .b
+              a.navbar-brand(href="/") Competition Collection 
+              button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarsExampleDefault", aria-controls="navbarsExampleDefault", aria-expanded="false", aria-label="Toggle navigation")
+                span.navbar-toggler-icon
 
-      #navbarsExampleDefault.collapse.navbar-collapse
-        ul.navbar-nav.ml-auto
-          b.li.nav-item
-            a.nav-link(href="/competitions") 공모전
-          b.li.nav-item
-            a.nav-link(href="/users") 사용자 조회
-          if (!currentUser) 
-            b.li.nav-item
-              a.nav-link(href='/signin') Signin
-            b.li.nav-item
-              a.nav-link(href='/users/new') Signup
-          else
-            b.li.nav-item
-              a.nav-link(href=`/users/${currentUser._id}`) My Profile
-            b.li.nav-item
-              a.nav-link(href='/signout') Signout
+            #navbarsExampleDefault.collapse.navbar-collapse
+              ul.navbar-nav.ml-auto
+                b.li.nav-item
+                  a.nav-link(href="/competitions") 공모전
+                b.li.nav-item
+                  a.nav-link(href="/users") 사용자 조회
+
+                if (!currentUser) 
+                  b.li.nav-item
+                    a.nav-link(href='/signin') Signin
+                  b.li.nav-item
+                    a.nav-link(href='/users/new') Signup
+                  b.li.nav-item
+                    a.btn.btn.btn-default(href='/competitions/new') 공모전 등록하기
+
+                else
+                  b.li.nav-item
+                    a.nav-link(href=`/users/${currentUser._id}`) My Profile
+                  b.li.nav-item
+                  a.nav-link(href='/signout') Signout
+                  a.btn.btn.btn-default(href='/competitions/new') 공모전 등록하기
         
           

@@ -9,6 +9,9 @@ var schema = new Schema({
   address: {type: String},
   sex: {type: String},
   birthday: {type: String},
+  admin: {type: Boolean, default: false},
+  facebook: {id: String, token: String, photo: String},
+  kakaotalk: {id: String, token: String, photo: String},
   createdAt: {type: Date, default: Date.now}
   //생성 날짜
 }, {

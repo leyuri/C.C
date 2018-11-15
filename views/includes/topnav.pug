@@ -1,33 +1,141 @@
 .header.clearfix
-    nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
-      
-        .container
-          
-            .b
-              a.navbar-brand(href="/") Competition Collection 
-              button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarsExampleDefault", aria-controls="navbarsExampleDefault", aria-expanded="false", aria-label="Toggle navigation")
-                span.navbar-toggler-icon
 
-            #navbarsExampleDefault.collapse.navbar-collapse
-              ul.navbar-nav.ml-auto
-                b.li.nav-item
-                  a.nav-link(href="/competitions") 공모전
-                b.li.nav-item
-                  a.nav-link(href="/users") 사용자 조회
 
-                if (!currentUser) 
-                  b.li.nav-item
-                    a.nav-link(href='/signin') Signin
-                  b.li.nav-item
-                    a.nav-link(href='/users/new') Signup
-                  b.li.nav-item
-                    a.btn.btn.btn-default(href='/competitions/new') 공모전 등록하기
 
-                else
-                  b.li.nav-item
-                    a.nav-link(href=`/users/${currentUser._id}`) My Profile
-                  b.li.nav-item
-                  a.nav-link(href='/signout') Signout
-                  a.btn.btn.btn-default(href='/competitions/new') 공모전 등록하기
+
+
+  .ui.attached.stackable.menu
+  
+      a.item(href="/")
+        img(src='/images/logo.png' height = 30 width = 16)
+      a.item(href="/competitions")
+        i.search.icon
+        |  Competition Collection
+
+      .right.menu
+        if (!currentUser) 
+          a.item(href='/signin')
+            i.edit.icon
+            | siginin
+          a.item(href='/users/new')
+            i.globe.icon
+            |  signup
+        else
+
+          .ui.simple.dropdown.item
+            i.user.plus.icon
+            i.dropdown.icon
+            .menu
+              a.item(href=`/users/${currentUser._id}`)
+                i.edit.icon
+                |  My Profile
+              a.item(href=`/users/${currentUser._id}`)
+                i.globe.icon
+                |  Registered Competition
+              a.item(href=`/users/${currentUser._id}/like`)
+                i.settings.icon
+                |  My Like      
+          a.item(href='/signout')
+            i.globe.icon
+            |  Signout
+          a.item(href='/competitions/new')
+            i.globe.icon
+            |  Competition register
+
+        if (currentUser && currentUser.admin)
+          .ui.simple.dropdown.item
+            | Management
+            i.dropdown.icon
+            .menu
+              a.item
+                i.edit.icon
+                |  공모전 승인
+              a.item
+                i.globe.icon
+                |  공모전 옵션
+              a.item
+                i.settings.icon
+                |  사용자 관리
+              a.item
+                i.settings.icon
+                |  신고 관리
+
+
+
+  //- .ui.left.fixed.vertical.menu
+  //-   .item
+  //-     img.ui.mini.image(src='/images/logo.png')
+  //-   a.item(href="/competitions") 공모전
+  //-   a.item Testimonials
+  //-   a.item Sign-in
+  //- //- .ui.right.fixed.vertical.menu
+  //- //-   .item
+  //- //-     img.ui.mini.image(src='/images/logo.png')
+  //- //-   a.item Features
+  //- //-   a.item Testimonials
+  //- //-   a.item Sign-in
+  //- //- p
+  //- //- p
+
+  //- nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+    
+  //-     .container
+  
         
-          
+  //-         .b
+  //-           a.navbar-brand(href="/") Competition Collection 
+  //-           button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarsExampleDefault", aria-controls="navbarsExampleDefault", aria-expanded="false", aria-label="Toggle navigation")
+  //-             span.navbar-toggler-icon
+
+  //-         #navbarsExampleDefault.collapse.navbar-collapse
+  //-           ul.navbar-nav.ml-auto
+  //-             b.li.nav-item
+  //-               a.nav-link(href="/competitions") 공모전
+  //-             b.li.nav-item
+  //-               //- a.nav-link(href="/users") 사용자 조회
+
+  //-             if (!currentUser) 
+  //-               b.li.nav-item
+  //-                 a.nav-link(href='/signin') Signin
+  //-               b.li.nav-item
+  //-                 a.nav-link(href='/users/new') Signup
+  //-               b.li.nav-item
+  //-                 a.btn.btn.btn-default(href='/competitions/new') 공모전 등록하기
+
+  //-             else
+  //-               b.li.nav-item
+  //-                 a.nav-link(href=`/users/${currentUser._id}`) My Profile
+  //-               b.li.nav-item
+  //-               a.nav-link(href='/signout') Signout
+  //-               a.btn.btn.btn-default(href='/competitions/new') 공모전 등록하기
+
+  //-             if(currentUser && currentUser.admin)
+  //-               li.nav-item.active
+  //-                 a.nav-link(href='/users') 사용자 조회
+  //-               li.nav-item.active
+  //-                 a.nav-link(href='/competitions/new')
+  //-                     span CREATE EVENT
+
+           //-             if (!currentUser) 
+          //-               b.li.nav-item
+          //-                 a.nav-link(href='/signin') Signin
+          //-               b.li.nav-item
+          //-                 a.nav-link(href='/users/new') Signup
+          //-               b.li.nav-item
+          //-                 a.btn.btn.btn-default(href='/competitions/new') 공모전 등록하기
+
+          //-             else
+          //-               b.li.nav-item
+          //-                 a.nav-link(href=`/users/${currentUser._id}`) My Profile
+          //-               b.li.nav-item
+          //-               a.nav-link(href='/signout') Signout
+          //-               a.btn.btn.btn-default(href='/competitions/new') 공모전 등록하기
+
+          //-             if(currentUser && currentUser.admin)
+          //-               li.nav-item.active
+          //-                 a.nav-link(href='/users') 사용자 조회
+          //-               li.nav-item.active
+          //-                 a.nav-link(href='/competitions/new')
+          //-                     span CREATE EVENT
+        //- .ui.input
+        //-   input(type='text', placeholder='Search...')

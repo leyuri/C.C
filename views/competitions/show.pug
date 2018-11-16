@@ -9,46 +9,25 @@ block content
       |
       br
 
-
-      .ui.labeled.button.right
-        .ui.red.button
-          i.heart.icon
-          |  Like
-        a.ui.basic.red.left.pointing.label
-          | 1,048
-      .ui.labeled.button(tabindex='0')
-        .ui.basic.blue.button
-          i.fork.icon
-          |  Forks
-        a.ui.basic.left.pointing.blue.label
-          | 1,048
+    .buttons
+      if currentUser
+      .buttons
+        button.btn.btn-outline-warning #[i.fa.fa-thumbs-up ] like
+        a.btn.btn-outline-dark(href=`/competitions/${competition._id}/favorite`) Add Favorite
+        a.btn.btn-outline-danger.delete-btn(href="#", data-url=`/competitions/${competition.id}?_method=delete`) 신고
 
     if(currentUser && competition.author.id == currentUser.id)
-      .buttons
-        button.btn.btn-outline-warning #[i.fa.fa-thumbs-up ] 좋아요
         
         a.btn.btn-outline-secondary(href=`/competitions/${competition.id}/edit`) 편집
         | 
         a.btn.btn-outline-danger.delete-btn(href="#", data-url=`/competitions/${competition.id}?_method=delete` onclick='return confirm("정말 삭제하시겠습니까?");') 삭제
         |
         |
-        //- a.btn.btn-outline-primary(href=`/competitions/${competition.id}/edit`) 페이스북
-        //- | 
-        //- a.btn.btn-outline-info.delete-btn(href="#", data-url=`/competitions/${competition.id}?_method=delete`) 트위터
-        //- | 
-        //- a.btn.btn-outline-danger.delete-btn(href="#", data-url=`/competitions/${competition.id}?_method=delete`) 신고
-        //- button.ui.facebook.button
-        //-   i.facebook.icon
-        //-   |   Facebook
-        //- button.ui.twitter.button
-        //-   i.twitter.icon
-        //-   |   Twitter
-        //- button.ui.google.plus.button
-        //-   i.google.plus.icon
-        //-   |   Google Plus
-
-
-
+        br
+        a.btn.btn-outline-primary(href=`/competitions/${competition.id}/edit`) 페이스북
+        | 
+        a.btn.btn-outline-info.delete-btn(href="#", data-url=`/competitions/${competition.id}?_method=delete`) 트위터
+        | 
 
 
 
@@ -65,17 +44,3 @@ block content
         textarea.form-control(name="content", rows="5")
       button.btn.btn-outline-warning(type="submit") 댓글달기
 
-  script.
-    $(function() {
-      $('.delete-btn').click(function() {
-        if (confirm('Are you sure to delete?')) {
-          location = $(this).data('url');
-        }
-        return false;
-      });
-    });
-
-  |
-  br
-  |
-  br

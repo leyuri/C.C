@@ -1,7 +1,7 @@
 .header.clearfix
   nav.navbar.navbar-expand-md.navbar-light.bg-dark.fixed-top
     .container
-      a.navbar-brand(href="/")
+      a.navbar-brand(href="/" style='color: white' )
         img(src='/images/logo.png' height = 30 width = 30)
         | &nbsp;&nbsp;Competition Collection
       button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarsExampleDefault", aria-controls="navbarsExampleDefault", aria-expanded="false", aria-label="Toggle navigation")
@@ -13,21 +13,24 @@
             a.nav-link(href="/competitions") 
               i.fas.fa-search
               | Show Competitions
+      
 
         
           if (!currentUser) 
             li.nav-item
               a.nav-link(href='/signin') 
                 i.fas.fa-sign-in-alt
-                | &nbsp; Signin
+                | &nbsp; Signin  
             li.nav-item
               a.nav-link(href='/users/new') 
                 i.fas.fa-sign-language
-                | &nbsp; Signup
-         
+                | &nbsp; Signup 
+            
+
+            
           else
             li.nav-item.dropdown
-              a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+              a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href=`/users/${currentUser._id}` , data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                 i.fas.fa-user
               .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
                 a.dropdown-item(href=`/users/${currentUser._id}`)  
@@ -48,8 +51,7 @@
                 i.fas.fa-pencil-alt
                 | &nbsp; Create Competition
 
-
-          if (currentUser && currentUser.admin)    
+          if (currentUser && currentUser.email == 'admin@gmail.com')    
             li.nav-item.dropdown
               a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                 i.fas.fa-unlock-alt
@@ -67,3 +69,4 @@
                 a.dropdown-item(href='#') 
                   i.fas.fa-fire-extinguisher
                   | &nbsp; 신고 관리
+

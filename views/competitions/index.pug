@@ -9,7 +9,7 @@ block content
       input.form-control.mr-sm-2(type='text', name='term', placeholder='Search', aria-label='Search', value=term)
 
     h1.main-title 
-      | 공모전 목록
+      | Competitions
       if competitions.total > 0
         .small Total #{competitions.total} competition(s)
 
@@ -19,45 +19,10 @@ block content
       .competitions
         each competition in competitions.docs
           .competition
-            a.title(href=`/competitions/${competition.id}`, style='color:black')= competition.title
+            a.title(href=`/competitions/${competition.id}`)= competition.title
             include _competition
 
       +paginate(competitions, '/competitions', query)
 
     hr
-    a.btn.btn-outline-warning(href='/competitions/new') 공모전 등록하기
-    |
-    br
-    |
-    br
-
-    //- table.table
-    //-   thead
-    //-     tr
-    //-       th(scope='col') #
-    //-       th(scope='col') 공모전명
-    //-       th(scope='col') 주최사
-    //-       th(scope='col') 상태
-    //-       th(scope='col') 조회수
-    //-   tbody
-    //-     tr
-    //-       th(scope='row') 1
-    //-       td Mark
-    //-       td Otto
-    //-       td @mdo
-    //-     tr
-    //-       th(scope='row') 2
-    //-       td Jacob
-    //-       td Thornton
-    //-       td @fat
-    //-     tr
-    //-       th(scope='row') 3
-    //-       td Larry
-    //-       td the Bird
-    //-       td @twitter
-    //- |
-    //- br
-    //- |
-    //- br
-
-//- a.title(href='/competitions/5be46850c7fa6009e4755570', style='font-color:black') [한이음 공모전 2018] SAI 빅 데이터를 활용한 약속장소 및 주변 힙플레스 추천
+    a.btn.btn-primary(href='/competitions/new') Ask Competition

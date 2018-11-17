@@ -1,6 +1,6 @@
-var mongoose = require('mongoose'),
-    mongoosePaginate = require('mongoose-paginate'),
-    Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
+const Schema = mongoose.Schema;
 
 var schema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -12,7 +12,7 @@ var schema = new Schema({
   toJSON: { virtuals: true},
   toObject: {virtuals: true}
 });
-schema.plugin(mongoosePaginate);  //페이지로 쭉 보여주는 기능을 갖고 있다. 
+schema.plugin(mongoosePaginate);
 var Answer = mongoose.model('Answer', schema);
 
 module.exports = Answer;

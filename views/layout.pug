@@ -57,7 +57,6 @@ html
       include ./includes/topnav 
       //- 별도의 파일로 빼놓은 것이다.
     block hero-unit
-
     if flashMessages
       |
       br
@@ -70,10 +69,6 @@ html
               | #{msg} 
             button.close(type='button', data-dismiss='alert', aria-label='close')
               span(aria-hidden='true') &times;
-    //- |
-    //- br
-    //- |
-    //- br
     block content
 
     block footer

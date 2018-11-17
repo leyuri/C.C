@@ -20,11 +20,16 @@ block content
             input(type="checkbox", value="remember-me")
             |
             | Remember me
-        button.btn.btn-outline-warning.btn-block(type='submit') Signin
+        button.btn.btn-primary.btn-block(type='submit') Signin
+        a.btn.btn-dark.btn-block(href='/auth/facebook')
+          i.fa.fa-facebook.fa-lg
+          | &nbsp;
+          | Signin with Facebook
+
         div.sub 
-          a(href='/users/new', style='color:black') Signup
+          a(href='/users/new') Signup
           | 
           | /
           |
-          a(href='/reset-password', style='color:black') Reset Password
+          a(href='/reset-password') Reset Password
       

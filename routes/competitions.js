@@ -1,20 +1,18 @@
 const express = require('express');
 const Competition = require('../models/competition');
-const User = require('../models/user'); 
 const Answer = require('../models/answer'); 
-// const Declare = require('../models/declare'); 
 const catchErrors = require('../lib/async-error');
+
 const router = express.Router();
-//이 변수는 이해하기 적어놓으라고 적었을 뿐이다. 
 
 // 동일한 코드가 users.js에도 있습니다. 이것은 나중에 수정합시다.
 function needAuth(req, res, next) {
-    if (req.session.user) {
-      next();
-    } else {
-      req.flash('danger', 'Please signin first.');
-      res.redirect('/signin');
-    }
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    req.flash('danger', 'Please signin first.');
+    res.redirect('/signin');
+  }
 }
 
 /* GET competitions listing. */
@@ -35,7 +33,7 @@ router.get('/', catchErrors(async (req, res, next) => {
     populate: 'author', 
     page: page, limit: limit
   });
-  res.render('competitions/index', {competitions: competitions, query: req.query});
+  res.render('competitions/index', {competitions: competitions, term: term, query: req.query});
 }));
 
 router.get('/new', needAuth, (req, res, next) => {
@@ -50,13 +48,10 @@ router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
 router.get('/:id', catchErrors(async (req, res, next) => {
   const competition = await Competition.findById(req.params.id).populate('author');
   const answers = await Answer.find({competition: competition.id}).populate('author');
-  // const declares = await Declare.find({competition: competition.id}).populate('author');
-  //신고하기
   competition.numReads++;    // TODO: 동일한 사람이 본 경우에 Read가 증가하지 않도록???
+
   await competition.save();
   res.render('competitions/show', {competition: competition, answers: answers});
-  // res.render('competitions/show', {competition: competition, declares: declares});
-  //신고하기 화면 보여주기
 }));
 
 router.put('/:id', catchErrors(async (req, res, next) => {
@@ -82,7 +77,7 @@ router.delete('/:id', needAuth, catchErrors(async (req, res, next) => {
 }));
 
 router.post('/', needAuth, catchErrors(async (req, res, next) => {
-  const user = req.session.user;
+  const user = req.user;
   var competition = new Competition({
     title: req.body.title,
     author: user._id,
@@ -94,9 +89,8 @@ router.post('/', needAuth, catchErrors(async (req, res, next) => {
   res.redirect('/competitions');
 }));
 
-//댓글
 router.post('/:id/answers', needAuth, catchErrors(async (req, res, next) => {
-  const user = req.session.user;
+  const user = req.user;
   const competition = await Competition.findById(req.params.id);
 
   if (!competition) {
@@ -117,28 +111,6 @@ router.post('/:id/answers', needAuth, catchErrors(async (req, res, next) => {
   res.redirect(`/competitions/${req.params.id}`);
 }));
 
-//신고 사유
-// router.post('/:id/declares', needAuth, catchErrors(async (req, res, next) => {
-//   const user = req.session.user;
-//   const competition = await Competition.findById(req.params.id);
-
-//   if (!competition) {
-//     req.flash('danger', 'Not exist competition');
-//     return res.redirect('back');
-//   }
-
-//   var declare = new Declare({
-//     author: user._id,
-//     competition: competition._id,
-//     content: req.body.content
-//   });
-//   await declare.save();
-//   competition.numDeclares++;
-//   await competition.save();
-
-//   req.flash('success', 'Successfully declared');
-//   res.redirect(`/competitions/${req.params.id}`);
-// }));
 
 
 module.exports = router;

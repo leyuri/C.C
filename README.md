@@ -17,10 +17,10 @@
 
 관리자는 관리 페이지에서 사용자 목록을 관리(조회,삭제,수정)할 수 있다.
 
-- [ ] (option) 회원 탈퇴: 탈퇴 시 회원의 개인 정보는 삭제하고 로그인 할 수 없도록 처리함.
-- [ ] (option) 비밀번호 암호화
-- [ ] (option) Facebook/Google/카카오톡 로그인
-- [ ] (option) 비밀번호 수정, 회원 정보 수정
+- [X] 회원 탈퇴: 탈퇴 시 회원의 개인 정보는 삭제하고 로그인 할 수 없도록 처리함.
+- [X] 비밀번호 암호화
+- [X] (option) Facebook/Google/카카오톡 로그인
+- [X] (option) 비밀번호 수정, 회원 정보 수정
 - [ ] (option) 여러 명의 관리자 계정을 만들 수 있다.
 
 ## 2.공모전 정보 등록/관리
@@ -34,7 +34,7 @@
 - [ ] (option) 신고기능: 적절하지 못한 공모전 정보/공모전 댓글에 대한 신고를 할 수 있고, 관리자는 신고 내역을 확인/관리할 수 있다.
 - [ ] (option) reCAPTCHA를 사용하여 스팸을 막는다. (https://www.google.com/recaptcha/intro/v3beta.html)
 - [ ] (option) 공모전 포스터를 이미지, pdf 등을 등록할 수 있다.
-- [ ] (option) 상세 설명을 WYSIWYG에디터를 이용하여 입력받는다. (TinyMCE, summernote 등 활용 가능 https://github.com/cheeaun/mooeditable/wiki/Javascript-WYSIWYG-editors)
+- [X] (option) 상세 설명을 WYSIWYG에디터를 이용하여 입력받는다. (TinyMCE, summernote 등 활용 가능 https://github.com/cheeaun/mooeditable/wiki/Javascript-WYSIWYG-editors)
 - [ ] (option) 공모전/이벤트 장소를 맵을 이용하여 입력받을 수 있다.
 - [ ] (option) 공모전의 분야, 응시대상 등의 옵션을 관리자가 설정할 수 있다.
 - [ ] (option) 공모전 정보 승인 프로세스 추가: 등록된 정보는 관리자의 승인 이후에 공개된다.
@@ -45,12 +45,12 @@
 
 공모전의 상세 정보를 조회할 수 있다.
 
-- [ ] (option) 댓글 기능: 사용자는 공모전에 대한 댓글을 남길 수 있다.
+- [X] (option) 댓글 기능: 사용자는 공모전에 대한 댓글을 남길 수 있다.
 - [ ] (option) 추천배너: 추천 공모전 정보를 사용자에게 보여준다.
 - [ ] (option) 분야별/상태(접수중/마감임박/마감 등)별 공모전 목록을 조회할 수 있다.
-- [ ] (option) 검색: 키워드를 통해 공모전을 검색할 수 있다.
+- [X] (option) 검색: 키워드를 통해 공모전을 검색할 수 있다.
 - [ ] (option) 추천 기능: 공모전 정보, 댓글 등에 추천(좋아요/싫어요)을 할 수 있다.
-- [ ] (option) Favorite 기능: 공모전 정보를 Favorite에 추가. 자신의 Favorite 목록 확인 가능
+- [X] (option) Favorite 기능: 공모전 정보를 Favorite에 추가. 자신의 Favorite 목록 확인 가능
 - [ ] (option) 공유기능: 공모전 정보를 페이스북, 트위터 등으로 공유할 수 있다.
 
 ## 4.  기타

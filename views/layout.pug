@@ -19,28 +19,34 @@ html
     script(defer='', src='https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js', integrity='sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c', crossorigin='anonymous')
 
 
-    //- 원래 기간설정으로 달력활용하려 했으나.. 일단 passㅠ_ㅜ
-    //- script(type='text/javascript', src='/bower_components/jquery/jquery.min.js')
-    //- script(type='text/javascript', src='/bower_components/moment/min/moment.min.js')
-    //- script(type='text/javascript', src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
-    //- script(type='text/javascript', src='/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
-    //- link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
-    //- link(rel='stylesheet', href='/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
-    //- script(type='text/javascript', src='/path/to/jquery.js')
-    //- script(type='text/javascript', src='/path/to/moment.js')
-    //- script(type='text/javascript', src='/path/to/bootstrap/js/transition.js')
-    //- script(type='text/javascript', src='/path/to/bootstrap/js/collapse.js')
-    //- script(type='text/javascript', src='/path/to/bootstrap/dist/bootstrap.min.js')
-    //- script(type='text/javascript', src='/path/to/bootstrap-datetimepicker.min.js')
-    //- summernote 적용
-    //- link(href='http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css', rel='stylesheet')
-    //- script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js')
-    //- script(src='http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js')
+    //- link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    //- link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css')
+    //- link(href='https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/css/froala_editor.pkgd.min.css', rel='stylesheet', type='text/css')
+    //- link(href='https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/css/froala_style.min.css', rel='stylesheet', type='text/css')
+    
+    //- script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+    //- script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js')
+    //- script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js')
+    //- script(type='text/javascript', src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/js/froala_editor.pkgd.min.js')
+    //- //- // Initialize the editor.
+    //- script.
+    //-   $(function() { $('textarea').froalaEditor() 
+
+    //-   function my_acf_add_local_field_groups() {
+    //-   remove_filter('acf_the_content', 'wpautop' );
+    //-   }
+    //-   add_action('acf/init', 'my_acf_add_local_field_groups');
+      
+      
+    //-   });
+
+
+  
     //- // include summernote css/js
     //- link(href='http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css', rel='stylesheet')
-    //- script(src='http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js')
-    //- 아니 근데..css겹쳐서 적용되어서 topnav이상해짐..아나
-    //- include summernote-ko-KR
+    //- //- script(src='http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js')
+    //- //- 아니 근데..css겹쳐서 적용되어서 topnav이상해짐..아나
+    //- //- include summernote-ko-KR
     //- script(src='lang/summernote-ko-KR.js')
 
     //- link(rel='stylesheet', type='text/css', href='/semantic.min.css')
@@ -49,8 +55,25 @@ html
     //- link(rel='stylesheet prefetch', href='http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/css/semantic.min.css')
     //- link(rel='stylesheet prefetch', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css')
 
-     
-
+    //- // include libraries(jQuery, bootstrap)
+    //- link(href='http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css', rel='stylesheet')
+    //- script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js')
+    //- script(src='http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js')
+ 
+        
+  //- script.
+  //-   $(document).ready(function() {
+  //-     $('#summernote').summernote({
+  //-     height : 300, // 에디터의 높이
+  //-     minHeight : null,
+  //-     maxHeight : null,
+  //-     focus : true,
+  //-     lang : 'ko-KR' // 기본 메뉴언어 US->KR로 변경
+  //-     });
+  //-     });
+  //-     var postForm = function() {
+  //-     var contents =  $('textarea[name="contents"]').html($('#summernote').code());
+  //-     }
   
   body
     block top-nav

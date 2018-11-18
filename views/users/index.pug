@@ -20,11 +20,16 @@ block content
               td= moment(user.createdAt).format('YYYY-MM-DD HH:mm:ss')
               td
                 a.btn.btn-sm.btn-outline-secondary(href=`/users/${user._id}/edit`) 
-                  | #[i.fa.fa-pencil] Edit
+                  | #[i.fas.fa-edit] Edit
                 | 
                 a.btn.btn-sm.need-confirm-btn.btn-outline-danger(href=`/users/${user._id}?_method=DELETE`)
                   | #[i.fa.fa-trash] Delete
-      a.btn.btn-primary(href='/users/new') #[i.fa.fa-plus] Register a new user
+    
+      a.btn.btn-warning(href='/users/new' style='color: white') #[i.fa.fa-plus] Register a new user
+      |
+      br
+      |
+      br  
     
     else 
       script.

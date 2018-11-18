@@ -36,10 +36,10 @@
                 a.dropdown-item(href=`/users/${currentUser._id}`)  
                   i.fas.fa-address-book
                   | &nbsp; My Profile
-                a.dropdown-item(href='#') 
+                a.dropdown-item(href=`/users/${currentUser._id}/registered`)  
                   i.fas.fa-pen-square
                   |  &nbsp; Registered Competition
-                a.dropdown-item(href='#') 
+                a.dropdown-item(href=`/users/${currentUser._id}/favorite`)
                   i.fas.fa-heart
                   | &nbsp; My Favorite
             li.nav-item
@@ -57,12 +57,12 @@
                 i.fas.fa-unlock-alt
                 | &nbsp; admin
               .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
-                a.dropdown-item(href='#') 
+                a.dropdown-item(href="/competitions")  
                   i.fas.fa-check-circle
-                  | &nbsp; 공모전 승인
-                a.dropdown-item(href='#') 
-                  i.fas.fa-filter
-                  | &nbsp; 공모전 옵션
+                  | &nbsp; 공모전 관리
+                //- a.dropdown-item(href='#') 
+                //-   i.fas.fa-filter
+                //-   | &nbsp; 공모전 옵션
                 a.dropdown-item(href="/users") 
                   i.fas.fa-users
                   | &nbsp; 사용자 관리

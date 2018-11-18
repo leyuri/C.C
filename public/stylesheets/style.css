@@ -80,8 +80,23 @@ a:hover {
   line-height: 160%;
   margin-bottom: 1em; }
   .competition .title {
-    font-size: 1.3rem; }
+    font-size: 1.3rem;
+    color: brown; }
   .competition .content {
+    color: #aaa; }
+  .competition .content {
+    color: #aaa; }
+  .competition .content {
+    color: #aaa; }
+  .competition .content {
+    color: #aaa; }
+  .competition .content {
+    color: #aaa; }
+  .competition .content {
+    color: #aaa; }
+  .competition .person {
+    color: #aaa; }
+  .competition .contact {
     color: #aaa; }
   .competition .tags {
     margin: 0.5em 0; }

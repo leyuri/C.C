@@ -5,13 +5,74 @@
     color: #bbb;
   }
 }
+
+// | 공모요강
+// .content= competition.content
+// br
+// | 분야
+// .smallText!= competition.field
+// |
+// br
+// | 응시대상
+// .smallText= competition.participant
+// |
+// br
+// | 주최사
+// .smallText!= competition.sponsor
+// |
+// br
+// | 시상내역
+// .smallText!= competition.award
+// |
+// br
+// | 접수시작
+// .smallText= competition.startTime  
+// |
+// br
+// | 접수종료
+// .smallText=competition.endTime
+// |
+// br
+// | 홈페이지
+// .smallText= competition.homepage
+// |
+// br
+// | 담당자
+// .smallText!= competition.person
+// |
+// br
+// | 연락처
+// .smallText!= competition.contact
+
 .competition {
   line-height: 160%;
   margin-bottom: 1em;
   .title {
     font-size: 1.3rem;
+    color:brown;
   }
   .content {
+    color: #aaa;
+  }
+  .content {
+    color: #aaa;
+  }
+  .content {
+    color: #aaa;
+  }
+  .content {
+    color: #aaa;
+  }
+  .content {
+    color: #aaa;
+  }
+  .content {
+    color: #aaa;
+  }
+  .person {
+    color: #aaa;
+  }
+  .contact {
     color: #aaa;
   }
   .tags {

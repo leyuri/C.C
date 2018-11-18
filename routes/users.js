@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user');
 const router = express.Router();
+const Favorite = require('../models/favorite');
 const catchErrors = require('../lib/async-error');
 
 function needAuth(req, res, next) {
@@ -75,6 +76,19 @@ router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
   res.render('users/edit', {user: user});
 }));
 
+router.get('/:id/favorite', needAuth, catchErrors(async(req,res,next) => {
+  const user = await User.findById(req.params.id);
+  const favorite = await Favorite.find({author: user._id}).populate('competition');
+  res.render('users/favorite', {favorite: favorite});
+}));
+
+// router.get('/:id/', needAuth, catchErrors(async(req,res,next) => {
+//   const user = await User.findById(req.params.id);
+//   const registered = await Favorite.find({author: user._id}).populate('competition');
+//   res.render('users/registered', {favorite: favorite});
+// }));
+
+
 router.put('/:id', needAuth, catchErrors(async (req, res, next) => {
   const err = validateForm(req.body);
   if (err) {
@@ -117,6 +131,9 @@ router.get('/:id', catchErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);
   res.render('users/show', {user: user});
 }));
+
+
+
 
 router.post('/', catchErrors(async (req, res, next) => {
   var err = validateForm(req.body, {needPassword: true});

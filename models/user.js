@@ -10,6 +10,7 @@ var schema = new Schema({
   sex: {type: String},
   birthday: {type: String},
   facebook: {id: String, token: String, photo: String},
+  favorite: [{type: Schema.Types.ObjectId, ref: 'Competition'}],
   createdAt: {type: Date, default: Date.now}
 }, {
   toJSON: { virtuals: true},

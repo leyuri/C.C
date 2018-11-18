@@ -5,7 +5,6 @@ include ../includes/_paginate
 block content
   .container
     form.form-inline.search-input-group(action='/competitions', method='GET')
-      i.fa.fa-search
       input.form-control.mr-sm-2(type='text', name='term', placeholder='Search', aria-label='Search', value=term)
 
     h1.main-title 
@@ -25,4 +24,8 @@ block content
       +paginate(competitions, '/competitions', query)
 
     hr
-    a.btn.btn-primary(href='/competitions/new') Ask Competition
+    a.btn.btn-warning(href='/competitions/new' style='color: white') #[i.fa.fa-plus] Create Competition
+    |
+    br
+    |
+    br

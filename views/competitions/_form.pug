@@ -3,11 +3,8 @@
   input.form-control(type="text", name="title", placeholder="What's your competition?", value=competition.title)
 .form-group
   label(for="content") 공모요강
-  textarea.form-control.summernote(name="content")= competition.content
-//- .form-group
-//-   .summernote summernote 1
-//- 수정필요
-
+  textarea.form-control(name="content")= competition.content
+  
 
 .form-group
   label(for="field") 분야 &nbsp;
@@ -68,19 +65,6 @@
 .form-group
   label(for="endTime") 접수종료
   input.form-control(type="datetime-local", name="endTime", value=competition.endTime)
-
-
-//- .form-group
-//-   label(for="period") 접수기간
-//-       |
-//-       br
-//-       |
-//-       br
-//-       | Start Date: 
-//-       input#startDate(width='276')
-//-       |         End Date: 
-//-       input#endDate(width='276')
-      //- input.form-control(type="text", name="period", placeholder="What's your period?", value=competition.period)
 .form-group
   label(for="tags") 태그
   input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=competition.tags ? competition.tags.join(" ") : "")
@@ -91,8 +75,8 @@
     | 포스터가 있을 경우 파일을 첨부해주세요.
 
 .form-group
-  label(for="hompage") 홈페이지
-  input.form-control(type="text", name="hompage", placeholder="hompage url?", value=competition.hompage)
+  label(for="homepage") 홈페이지
+  input.form-control(type="text", name="homepage", placeholder="homepage url?", value=competition.homepage)
 .form-group
   label(for="person") 담당자
   input.form-control(type="text", name="person", placeholder="What's your person?", value=competition.person)
@@ -104,69 +88,7 @@
 |
 br
 
-script.
-  $(document).ready(function() {
-  $('.summernote').summernote({
-    height : 200
-    //focus : true,
-   // lang : 'ko-KR'
-      });
-    });
 
-//- script.
-//-   $(document).ready(function() {
-//-     $('#summernote').summernote({
-//-     height : 300, // 에디터의 높이
-//-     minHeight : null,
-//-     maxHeight : null,
-//-     focus : true,
-//-     lang : 'ko-KR' // 기본 메뉴언어 US->KR로 변경
-//-     });
-//-     });
-//-     var postForm = function() {
-//-     var contents =  $('textarea[name="contents"]').html($('#summernote').code());
-//-     }
-//- script.
-//-     $(document).ready(function() {
-//-     $('#summernote').summernote({
-//-     height : 300, // 에디터의 높이
-//-     minHeight : null,
-//-     maxHeight : null,
-//-     focus : true,
-//-     lang : 'ko-KR' // 기본 메뉴언어 US->KR로 변경
-//-     });
-//-     });
-//-     var postForm = function() {
-//-     var contents =  $('textarea[name="contents"]').html($('#summernote').code());
-//-     }
 
-//- script.
-//-   var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-//-   $('#startDate').datepicker({
-//-   uiLibrary: 'bootstrap4',
-//-   iconsLibrary: 'fontawesome',
-//-   minDate: today,
-//-   maxDate: function () {
-//-   return $('#endDate').val();
-//-   }
-//-   });
-//-   $('#endDate').datepicker({
-//-   uiLibrary: 'bootstrap4',
-//-   iconsLibrary: 'fontawesome',
-//-   minDate: function () {
-//-   return $('#startDate').val();
-//-   }
-//-   });
 
-    //- .col-md-5
-    //-   .form-group
-    //-     #datetimepicker6.input-group.date
-    //-       input.form-control(type='text')
-    //-       span.input-group-addon
-    //-         span.glyphicon.glyphicon-calendar
-    //- .col-md-5
-    //-   .form-group
-    //-     #datetimepicker7.input-group.date
-    //-       input.form-control(type='text')
-    //-       span.input-group-addon
-    //-         span.glyphicon.glyphicon-calendar
+

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const Favorite = require('../models/favorite');
 const Schema = mongoose.Schema;
 
 var schema = new Schema({

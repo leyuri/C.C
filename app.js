@@ -50,6 +50,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
 // _method를 통해서 method를 변경할 수 있도록 함. PUT이나 DELETE를 사용할 수 있도록.
 // html은 기본적으로 get post 등등이 있음, delete나 patch는 사용하지 못함
 
@@ -102,6 +103,8 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/competitions', competitions);
 require('./routes/auth')(app, passport);
+//api
+app.use('/api', require('./routes/api'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -120,5 +123,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

@@ -82,6 +82,7 @@ router.get('/:id/favorite', needAuth, catchErrors(async(req,res,next) => {
   res.render('users/favorite', {favorite: favorite});
 }));
 
+
 // router.get('/:id/', needAuth, catchErrors(async(req,res,next) => {
 //   const user = await User.findById(req.params.id);
 //   const registered = await Favorite.find({author: user._id}).populate('competition');

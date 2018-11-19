@@ -2,6 +2,7 @@ const express = require('express');
 const Competition = require('../models/competition');
 const Answer = require('../models/answer'); 
 const catchErrors = require('../lib/async-error');
+const Favorite = require('../models/favorite');
 
 const router = express.Router();
 
@@ -39,6 +40,9 @@ router.get('/', catchErrors(async (req, res, next) => {
 router.get('/new', needAuth, (req, res, next) => {
   res.render('competitions/new', {competition: {}});
 });
+
+
+
 
 router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
   const competition = await Competition.findById(req.params.id);

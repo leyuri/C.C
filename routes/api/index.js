@@ -3,6 +3,8 @@ const Competition = require('../../models/competition');
 const Answer = require('../../models/answer'); 
 const LikeLog = require('../../models/like-log'); 
 const catchErrors = require('../../lib/async-error');
+const Favorite = require('../../models/favorite');
+
 
 const router = express.Router();
 
@@ -48,5 +50,33 @@ router.use((err, req, res, next) => {
     msg: err.msg || err
   });
 });
+
+router.use(catchErrors(async (req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    next({status: 401, msg: 'Unauthorized'});
+  }
+}));
+
+router.use('/competitions', require('../competitions'));
+
+router.post('/competitions/:id/favorite', catchErrors(async (req, res, next) => {
+  const competition = await competition.findById(req.params.id);
+  if (!competition) {
+    return next({status: 404, msg: 'Not exist competitions'});
+  }
+  var favorite = await Favorite.findOne({author: req.user._id, competition: competition._id});
+  if (!favorite) {
+    await Promise.all([
+      Favorite.create({author: req.user._id, competition: competition._id})
+    ]);
+  }
+  return res.json(competition);
+}));
+
+
+
+
 
 module.exports = router;

@@ -1,7 +1,6 @@
 extends ../layout
 
-
-
+  
 block content
   .container
 
@@ -56,26 +55,68 @@ block content
       include _competition
 
       .buttons
-        if (currentUser && currentUser.email == 'admin@gmail.com')  
+        if (currentUser)  
           button.btn.btn-outline-primary.competition-like-btn(data-id=competition.id) 
             span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
             span #[i.fa.fa-thumbs-up] Like 
-
           |
           |
-          a.btn.btn-outline-success(href=`/competitions/${competition._id}/favorite`) 
-            i.fas.fa-heart
-            | &nbsp; Favorite
-          |
-          |
-          a.btn.btn-outline-dark(href=`/competitions/${competition._id}/favorite`) 
+          a.btn.btn.btn-outline-success(href="" onclick="alert('보관함에 저장되었습니다.')")
+            i.fas.fa-heart.competition-icon(aria-hidden='true', data-id=competition._id)
+            | &nbsp; Add favorite
+               
+          button.a.btn.btn-outline-dark(href=`/competitions/${competition._id}/favorite` type='button', data-toggle='modal', data-target='#exampleModal', data-whatever='@mdo')
             i.fas.fa-bomb
             | &nbsp; Report competition
+          #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+            .modal-dialog(role='document')
+              .modal-content
+                .modal-header
+                  h5#exampleModalLabel.modal-title 신고하기
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') ×
+                .modal-body
+                  form
+                    .form-group
+                      label.col-form-label(for='recipient-content') 공모전 이름:
+                      h5.m.title(stype = 'color:black')= competition.title
+                  
+       
+                    .form-group
+                      label.col-form-label(for='message-text') 신고 사유:
+                        |
+                        br
+                        .form-check
+                          input#exampleRadios1.form-check-input(type='radio', name='exampleRadios', value='option1', checked='')
+                          label.form-check-label(for='exampleRadios1')
+                            | 부적절한 홍보 게시물
+                        .form-check
+                          input#exampleRadios2.form-check-input(type='radio', name='exampleRadios', value='option2')
+                          label.form-check-label(for='exampleRadios2')
+                            | 음란성
+                        .form-check
+                          input#exampleRadios3.form-check-input(type='radio', name='exampleRadios', value='option3', disabled='')
+                          label.form-check-label(for='exampleRadios3')
+                            | 특정인 대상의 비망/욕설
+                        .form-check
+                          input#exampleRadios3.form-check-input(type='radio', name='exampleRadios', value='option4', disabled='')
+                          label.form-check-label(for='exampleRadios3')
+                            | 저작권 침해
+                .modal-footer
+                  button.btn.btn-secondary(type='button', data-dismiss='modal') 취소
+                  button.btn.btn-primary(type='button') 신고
+
+
+
+
           if competition.author && competition.author.id == currentUser.id
             | 
             a.btn.btn-outline-secondary(href=`/competitions/${competition.id}/edit`) Edit
             | 
             a.btn.btn-outline-danger.need-confirm-btn(href=`/competitions/${competition.id}?_method=delete`) Delete
+
+
+
             |
             |
             |
@@ -122,5 +163,40 @@ block content
 
 
 
+  script.
+    $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+    })
 
   script(src='/javascripts/competition_client.js')
+
+
+
+//- .form-group
+//-   label.col-form-label(for='recipient-name') 작성자:
+
+//-   input#recipient-name.form-control(type='text')
+//- .form-group
+//-   label.col-form-label(for='recipient-content') 공모전 이름:
+//-     h5.main-title= competition.title
+//- input#recipient-name.form-control(type='text')
+
+//-         |
+//- a(href='' onclick="alert('북마크 되었습니다')")
+//-       //- btn.btn-outline-success(href=`/competitions/${competition._id}/favorite`) 
+//-   i.fas.fa-heart.competition-icon(aria-hidden='true', data-id=event._id)
+//-   | &nbsp; Favorite
+//- |
+//- |
+
+//-           //- a(href='' onclick="alert('북마크 되었습니다')")
+//-           //-   i.fa.fa-bookmark-o.event-icon(aria-hidden='true', data-id=event._id)
+//-       //- a.btn.btn-outline-dark(href='#' onclick="alert('북마크 되었습니다')") 
+//-       //-   i.fas.fa-heart.competition-icon(aria-hidden='true', data-id=event._id)
+//-       //-   | &nbsp; Report competition

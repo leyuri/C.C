@@ -1,0 +1,31 @@
+extends ../layout
+
+include ../includes/_paginate
+
+block content
+  .container
+    form.form-inline.search-input-group(action='/competitions', method='GET')
+      input.form-control.mr-sm-2(type='text', name='term', placeholder='Search', aria-label='Search', value=term)
+
+    h1.main-title 
+      | Competitions
+      if competitions.total > 0
+        .small Total #{competitions.total} competition(s)
+
+    if competitions.total <= 0 
+      .alert.alert-info No competitions available yet
+    else
+      .competitions
+        each competition in competitions.docs
+          .competition
+            a.title(href=`/competitions/${competition.id}`)= competition.title
+            include _competition
+
+      +paginate(competitions, '/competitions', query)
+
+    hr
+    a.btn.btn-warning(href='/competitions/new' style='color: white') #[i.fa.fa-plus] Create Competition
+    |
+    br
+    |
+    br

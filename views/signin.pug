@@ -20,11 +20,24 @@ block content
             input(type="checkbox", value="remember-me")
             |
             | Remember me
-        button.btn.btn-warning.btn-block(type='submit' style='color: white') Signin
-        a.btn.btn-dark.btn-block(href='/auth/facebook')
-          i.fa.fa-facebook.fa-lg
+        button.btn.btn-dark.btn-block(type='submit' style='color: white') Signin
+        a.btn.btn-primary.btn-block(href='/auth/facebook')
+          i.fab.fa-facebook-f
           | &nbsp;
           | Signin with Facebook
+        a.btn.btn-primary.btn-block(href='/auth/facebook')
+          i.fab.fa-google-plus-square
+          | &nbsp;
+          | Signin with Google
+        a.btn.btn-warning.btn-block(href='/auth/facebook')
+          i.fa.fa-facebook.fa-lg
+          | &nbsp;
+          | Signin with Kakao
+        button.btn
+
+
+
+
 
         div.sub 
           a(href='/users/new') Signup

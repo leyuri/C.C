@@ -57,21 +57,51 @@ block content
 
       .buttons
         if (currentUser && currentUser.email == 'admin@gmail.com')  
-          button.btn.btn-primary.competition-like-btn(data-id=competition.id) 
+          button.btn.btn-outline-primary.competition-like-btn(data-id=competition.id) 
             span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
-            span #[i.fa.fa-thumbs-up] Like
+            span #[i.fa.fa-thumbs-up] Like 
 
-          a.btn.btn-outline-danger(href=`/competitions/${competition._id}/favorite`) 
+          |
+          |
+          a.btn.btn-outline-success(href=`/competitions/${competition._id}/favorite`) 
             i.fas.fa-heart
-            | Favorite
-
-
+            | &nbsp; Favorite
+          |
+          |
+          a.btn.btn-outline-dark(href=`/competitions/${competition._id}/favorite`) 
+            i.fas.fa-bomb
+            | &nbsp; Report competition
           if competition.author && competition.author.id == currentUser.id
             | 
             a.btn.btn-outline-secondary(href=`/competitions/${competition.id}/edit`) Edit
             | 
             a.btn.btn-outline-danger.need-confirm-btn(href=`/competitions/${competition.id}?_method=delete`) Delete
-      
+            |
+            |
+            |
+            |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            |
+            |&nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;       
+            a.btn.pull-right.btn-outline-info(href=`/competitions/${competition._id}/favorite`) 
+              i.fas.fa-share-alt-square(style='color: #2ECCFA')
+              | &nbsp; twitter
+            |&nbsp;
+            |&nbsp;
+            |
+            |
+            |
+            |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            a.btn.pull-right.btn-outline-primary(href=`/competitions/${competition._id}/favorite`) 
+              i.fas.fa-share-alt-square(style='color: #1E90FF')
+              | &nbsp; facebook
+          
+            //- a.fa.fa-facebook(href='#')
+            //- a.fa.fa-twitter(href='#') 왜 안먹어;
+
+
+
+
+
     if competition.numAnswers > 0
       hr
       h3 #{competition.numAnswers} Answer(s)
@@ -89,6 +119,8 @@ block content
         br
         |
         br  
+
+
 
 
   script(src='/javascripts/competition_client.js')

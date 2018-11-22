@@ -14,7 +14,7 @@ router.get('/', catchErrors(async (req, res, next) => {
     populate: 'author',
     page: page, limit: limit
   });
-  res.json({competitions: competitions.docs, page: competitions.page, pages: competitions.pages});   
+  res.json({competitions: competitions.docs, page: competitions.page, pages: competitions.pages, });   
 }));
 
 // Read

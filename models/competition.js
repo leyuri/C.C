@@ -20,6 +20,7 @@ var schema = new Schema({
   homepage: {type: String, trim: true, required: false},
   person: {type: String, trim: true, required: false},
   contact: {type: String, trim: true, required: false},
+  locatinon: {type: String, trim: true, required: false},
   createdAt: {type: Date, default: Date.now}
 }, {
   toJSON: { virtuals: true},

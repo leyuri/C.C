@@ -35,7 +35,7 @@ app.locals.querystring = require('querystring');
 // mongodb connect
 //=======================================================
 mongoose.Promise = global.Promise; // ES6 Native Promise를 mongoose에서 사용한다.
-const connStr = 'mongodb://localhost/mjdb1';
+const connStr = 'mongodb://<dbuser>:<dbpassword>@ds137601.mlab.com:37601/cc';
 // 아래는 mLab을 사용하는 경우의 예: 본인의 접속 String으로 바꾸세요.
 //mLab은 몽고DB 데이터베이스를 호스팅하는 매니지드 클라우드 데이터베이스 서비스이다. mLab은 아마존, 구글, 마이크로소프트 애저 등의 클라우드 제공자에서 실행되며 PaaS 제공자들과 파트너십을 맺고 있다.
 // const connStr = 'mongodb://dbuser1:mju12345@ds113825.mlab.com:13825/sampledb1';

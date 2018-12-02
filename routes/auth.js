@@ -23,9 +23,42 @@ module.exports = (app, passport) => {
     }
   );
 
+
+  //  카카오 로그인
+  app.get('/auth/kakao',
+  passport.authenticate('kakao-login')
+  );
+  //카카오톡 콜백
+  app.get('/auth/kakao/callback',
+  passport.authenticate('kakao-login', {
+    failureRedirect: '/',
+    failureFlash: true
+  }), (req, res, next) =>{
+    req.flash('success', 'Welcome!');
+    res.redirect('/competitions');
+  }
+  );
+
+  //구글 로그인
+  app.get('/auth/google',
+  passport.authenticate('google', { 
+    scope: ['https://www.googleapis.com/auth/plus.login'] 
+  }));
+ 
+  //구글 콜백
+  app.get('/auth/google/callback', 
+  passport.authenticate('google', { 
+    failureRedirect: '/auth/login' }),
+  function(req, res) {
+    res.redirect('/competitions');
+  });
+
+
   app.get('/signout', (req, res) => {
     req.logout();
     req.flash('success', 'Successfully signed out');
     res.redirect('/');
   });
+
+
 };

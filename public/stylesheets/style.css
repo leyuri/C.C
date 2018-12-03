@@ -244,4 +244,19 @@ a:hover {
     color: #bbb;
     cursor: default; }
 
+.competition-like-btn, .answer-unlike-btn {
+  cursor: pointer; }
+  .competition-like-btn .for-loading, .answer-unlike-btn .for-loading {
+    display: none; }
+  .competition-like-btn.loading, .answer-unlike-btn.loading {
+    filter: opacity(30%);
+    cursor: wait; }
+    .competition-like-btn.loading > span, .answer-unlike-btn.loading > span {
+      display: none; }
+    .competition-like-btn.loading .for-loading, .answer-unlike-btn.loading .for-loading {
+      display: inline-block; }
+  .competition-like-btn.disabled, .answer-unlike-btn.disabled {
+    color: #bbb;
+    cursor: default; }
+
 /*# sourceMappingURL=style.css.map */

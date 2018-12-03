@@ -1,17 +1,21 @@
 .answer.card
   .numbers.like-badge
     .number
-      span.number.num-votes= competition.numLikes
+      span.number.num-likes= answer.numLikes
     .button
-      a.like(href='#', data-id=answer.id)
+      a.like.answer-like-btn(href='#', data-id=answer.id)
         i.fa.fa-thumbs-up
         | 
         | Like
-   
-        i.fa.fa-thumbs-down
+    .number
+      span.number.num-Unlikes= answer.numUnLikes
+    .button
+      a.like.answer-unlike-btn(href='#', data-id=answer.id)
+        i.fa.fa-thumbs-up
         | 
         | UnLike
 
+        
   .card-body
     .content= answer.content
   .row.card-body
@@ -21,4 +25,30 @@
         | answered on #{moment(answer.createdAt).format('YYYY-MM-DD')}
         if answer.author
           | 
-          | by #[a(href=`/users/${answer.author.id}`, style='color:black')= answer.author.name]
+          | by #[a(href=`/users/${answer.author.id}`)= answer.author.name]
+
+
+          //- .answer.card
+          //-   .numbers.like-badge
+          //-     .number
+          //-       span.number.num-votes= competition.numLikes
+          //-     .button
+          //-       a.like(href='#', data-id=answer.id)
+          //-         i.fa.fa-thumbs-up
+          //-         | 
+          //-         | Like
+            
+          //-         i.fa.fa-thumbs-down
+          //-         | 
+          //-         | UnLike
+
+          //-   .card-body
+          //-     .content= answer.content
+          //-   .row.card-body
+          //-     .col-sm
+          //-     .col-sm.text-right
+          //-       .author
+          //-         | answered on #{moment(answer.createdAt).format('YYYY-MM-DD')}
+          //-         if answer.author
+          //-           | 
+          //-           | by #[a(href=`/users/${answer.author.id}`, style='color:black')= answer.author.name]

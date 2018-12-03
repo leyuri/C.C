@@ -1,0 +1,40 @@
+extends ../layout
+
+include ../includes/_paginate
+
+block content
+  .container
+    h1.main-title Competitions
+    if (currentUser.email == 'admin@gmail.com')
+      table.table.table-hover
+        thead
+          tr
+            th Title
+            //- th Email
+            //- th Created At
+            th
+        tbody
+          each competition in competitions
+            tr
+              td
+                a(href=`/competitions/${competition.id}`)= competition.title
+                    //-   td= user.email
+                    //-   td= moment(user.createdAt).format('YYYY-MM-DD HH:mm:ss')
+              td
+                a.btn.btn-sm.btn-outline-secondary(href=`/competitions/${user._id}/edit`) 
+                  | #[i.fas.fa-edit] Edit
+                | 
+                a.btn.btn-sm.need-confirm-btn.btn-outline-danger(href=`/competitions/${user._id}?_method=DELETE`)
+                  | #[i.fa.fa-trash] Delete
+    
+      a.btn.btn-warning(href='/competitions/new' style='color: white') #[i.fa.fa-plus] Register a new user
+      |
+      br
+      |
+      br  
+    
+    else 
+      script.
+        alert('관리자만 열람 가능합니다');
+
+

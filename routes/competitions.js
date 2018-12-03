@@ -41,6 +41,24 @@ router.get('/new', needAuth, (req, res, next) => {
   res.render('competitions/new', {competition: {}});
 });
 
+router.post('/:id/favorite', catchErrors(async (req, res, next) => {
+  console.log('지나감1');
+  const competition = await Competition.findById(req.params.id);
+  if (!competition) {
+    return next({status: 404, msg: 'Not exist competition'});
+  }
+  console.log('지나감2');
+  console.log(req.user._id);
+  console.log(competition._id);
+  var favorite = await Favorite.findOne({author: req.user._id, competition: req.params.id});
+  console.log('지나감3');
+  if (!favorite) {
+    Favorite.create({author: req.user._id, competition: competition._id})
+  }
+  console.log('지나감4');
+  return res.json(competition);
+}));
+
 
 
 
@@ -111,6 +129,13 @@ router.post('/', needAuth, catchErrors(async (req, res, next) => {
     startTime: req.body.startTime,
     endTime: req.body.endTime,
     sponsor: req.body.sponsor,
+
+    location_map: req.body.location_map,
+    location_latLng: req.body.location_latLng,
+    lat: req.body.lat,
+    lng: req.body.lng,
+
+
     award: req.body.award,
     image: req.body.image,
     participant:req.body.participant,
@@ -140,10 +165,15 @@ router.post('/', needAuth, catchErrors(async (req, res, next) => {
   competition.startTime=req.body.startTime;
   competition.endTime=req.body.endTime;
   competition.sponsor=req.body.sponsor;
+
+  competition.location_latLng=req.body.location_latLng;
+  competition.lat=req.body.lat;
+  competition.lng=req.body.lng;
+  competition.location_map=req.body.location_map;
+
   competition.award=req.body.award;
   competition.image=req.body.image;
   competition.participant=req.body.participant;
-
   competition.homepage=req.body.homepage;
   competition.person=req.body.person;
   competition.contact=req.body.contact;

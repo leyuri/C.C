@@ -5,17 +5,27 @@ block content
   .container
     br
     h1.main-title My favorite
-    .row.col-md-7.table-responsive
-      table#customerTable.table.table-bordered.table-hover
+    br
+    br
+    if(favorite.total <= 0)
+      p 저장된 공모전이 없습니다. 
+      br
+    else
+      table.table.table-hover
         thead
           tr
-            th Id
+            th
             th Title
-            th content
-
+            th Person
         tbody
-
-
+          - var num = 1;
+          each f in favorite
+            tr
+              td= num++
+              td= f.competition.title
+              td= f.competition.person
+        
+              
 
 
 

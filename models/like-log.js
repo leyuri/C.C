@@ -1,4 +1,3 @@
-//좋아요
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -13,6 +12,3 @@ var schema = new Schema({
 var LikeLog = mongoose.model('LikeLog', schema);
 
 module.exports = LikeLog;
-
-
-//왜 반영이 안되는거지

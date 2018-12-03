@@ -1,5 +1,4 @@
-//- .content= competition.content
-//- .content= competition.field
+.content= competition.content
 .tags.badges
   each tag in competition.tags
     span.badge.badge-phill.badge-secondary= tag
@@ -7,12 +6,33 @@
 .row
   .col-sm
     .numbers.
-      #[span.number.num-votes= competition.numLikes] likes,
+      #[span.number.num-likes= competition.numLikes] likes,
       #[span.number.num-answers= competition.numAnswers] answers,
-      #[span.number.num-views= competition.numReads] reads
+      #[span.number.num-reads= competition.numReads] reads
   .col-sm
     .author
       | asked on #{moment(competition.createdAt).format('YYYY-MM-DD')}
       if competition.author
         | 
-        | by #[a(href=`/users/${competition.author.id}`, style='color:black')= competition.author.name] 
+        | by #[a(href=`/users/${competition.author.id}`)= competition.author.name] 
+
+
+
+      //- //- .content= competition.content
+      //- //- .content= competition.field
+      //- .tags.badges
+      //-   each tag in competition.tags
+      //-     span.badge.badge-phill.badge-secondary= tag
+      //-     | 
+      //- .row
+      //-   .col-sm
+      //-     .numbers.
+      //-       #[span.number.num-votes= competition.numLikes] likes,
+      //-       #[span.number.num-answers= competition.numAnswers] answers,
+      //-       #[span.number.num-views= competition.numReads] reads
+      //-   .col-sm
+      //-     .author
+      //-       | asked on #{moment(competition.createdAt).format('YYYY-MM-DD')}
+      //-       if competition.author
+      //-         | 
+      //-         | by #[a(href=`/users/${competition.author.id}`, style='color:black')= competition.author.name] 

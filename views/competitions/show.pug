@@ -1,6 +1,5 @@
 extends ../layout
 
-  
 block content
   .container
 
@@ -47,21 +46,19 @@ block content
           br
           | 연락처
           .content= competition.contact
+          br
 
- 
 
-
-    .competition.show
       include _competition
 
       .buttons
-        if (currentUser)  
+        if currentUser
           button.btn.btn-outline-primary.competition-like-btn(data-id=competition.id) 
             span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
-            span #[i.fa.fa-thumbs-up] Like 
+            span #[i.fa.fa-thumbs-up] Like
           |
           |
-          a.btn.btn.btn-outline-success(href="" onclick="alert('보관함에 저장되었습니다.')")
+          button.btn.btn.btn-outline-success(href="" onclick="alert('보관함에 저장되었습니다.')")
             i.fas.fa-heart.competition-icon(aria-hidden='true', data-id=competition._id)
             | &nbsp; Add favorite
                
@@ -108,8 +105,8 @@ block content
 
 
 
-
-          if competition.author && competition.author.id == currentUser.id
+                      //- if (competition.author && competition.author.id == currentUser.id && currentUser.email == 'admin@gmail.com')
+          if (competition.author.id == currentUser.id || currentUser && currentUser.email == 'admin@gmail.com')
             | 
             a.btn.btn-outline-secondary(href=`/competitions/${competition.id}/edit`) Edit
             | 
@@ -164,8 +161,8 @@ block content
 
 
   script.
-    $('#exampleModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
+    $('#exampleModal').on('show.bs.modal', function (competition) {
+    var button = $(competition.relatedTarget) // Button that triggered the modal
     var recipient = button.data('whatever') // Extract info from data-* attributes
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -190,13 +187,13 @@ block content
 //-         |
 //- a(href='' onclick="alert('북마크 되었습니다')")
 //-       //- btn.btn-outline-success(href=`/competitions/${competition._id}/favorite`) 
-//-   i.fas.fa-heart.competition-icon(aria-hidden='true', data-id=event._id)
+//-   i.fas.fa-heart.competition-icon(aria-hidden='true', data-id=competition._id)
 //-   | &nbsp; Favorite
 //- |
 //- |
 
 //-           //- a(href='' onclick="alert('북마크 되었습니다')")
-//-           //-   i.fa.fa-bookmark-o.event-icon(aria-hidden='true', data-id=event._id)
+//-           //-   i.fa.fa-bookmark-o.competition-icon(aria-hidden='true', data-id=competition._id)
 //-       //- a.btn.btn-outline-dark(href='#' onclick="alert('북마크 되었습니다')") 
-//-       //-   i.fas.fa-heart.competition-icon(aria-hidden='true', data-id=event._id)
+//-       //-   i.fas.fa-heart.competition-icon(aria-hidden='true', data-id=competition._id)
 //-       //-   | &nbsp; Report competition

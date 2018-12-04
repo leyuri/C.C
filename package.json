@@ -35,6 +35,7 @@
     "pug": "2.0.0-beta11",
     "request": "^2.88.0",
     "serve-favicon": "^2.4.5",
+    "socket.io": "^2.2.0",
     "summernote": "^0.8.10"
   }
 }

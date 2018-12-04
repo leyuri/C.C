@@ -1,0 +1,11 @@
+{
+    "web":{"client_id":"778724391594-62aqa4rs1v4pmvpugtn16ra97c40p8j1.apps.googleusercontent.com",
+    "project_id":"webprogrammingcc",
+    "auth_uri":"https://accounts.google.com/o/oauth2/auth",
+    "token_uri":"https://www.googleapis.com/oauth2/v3/token",
+    "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret":"jLAgHPMz61TbD-Idn8ZSxhKk",
+    "redirect_uris":["http://localhost:3000/auth/google/callback",
+        "https://floating-brook-81932.herokuapp.com/auth/google/callback"],
+    "javascript_origins":["https://floating-brook-81932.herokuapp.com","http://localhost:3000","http://localhost"]}
+}

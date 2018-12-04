@@ -134,7 +134,21 @@ router.get('/:id', catchErrors(async (req, res, next) => {
 }));
 
 
+router.get('/:id', (req, res, next) => {
 
+  var users= User.findById(req.params.id, function(err, users) {
+    var competition = Competition.find({}, function(err, competition) {
+      var recommends = Competition.find({_id: competition.recommend}, function(err, recommends) {
+        var competitions = Competition.find({author: users.id}, function(err, competitions) {
+          var favorites = Competition.find({_id: users.favorite}, function(err, s) {
+            res.render('users/show', {users: users, competitions: competitions, favorites: favorites, recommends: recommends
+            });
+          });
+        });
+      });
+    });
+  });
+});
 
 router.post('/', catchErrors(async (req, res, next) => {
   var err = validateForm(req.body, {needPassword: true});

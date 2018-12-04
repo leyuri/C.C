@@ -35,6 +35,13 @@ html
     script(src='https://www.google.com/recaptcha/api.js')
     link(href='https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css', rel='stylesheet')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js')
+    
+    //- Notify 라이브러리 import: http://bootstrap-notify.remabledesigns.com/ 
+    script(src='/javascripts/bootstrap-notify.js')
+    //- socket io
+    script(src='/socket.io/socket.io.js')   
+  
+  
   body
     block top-nav
       include ./includes/topnav 
@@ -57,4 +64,24 @@ html
     block footer
       include ./includes/footer
 
+    script.
 
+      // WebSocket을 만들고 접속
+      var socket = io();
+
+      socket.on('welcome', function() {
+        // welcome 메시지를 받으면 join을 보낸다.
+        console.log('received welcome');
+        socket.emit('join');
+      });
+
+      socket.on('answered', function(data) {
+        // answered를 받으면 링크를 notifier로 출력한다.
+        var title = $('<div></div>').text(data.question.title).html();
+        $.notify({
+          icon: 'fa fa-bell',
+          title: 'You hace a new answer.',
+          url: data.url,
+          message: title
+        });
+      });

@@ -2,6 +2,29 @@ extends layout
 
 block hero-unit
 
+
+    //- h1.main-title Users
+    //- if (currentUser.email == 'admin@gmail.com')
+    //-   table.table.table-hover
+    //-     thead
+    //-       tr
+    //-         th Name
+    //-         th Email
+    //-         th Created At
+    //-         th
+    //-     tbody
+    //-       each user in users
+    //-         tr
+    //-           td
+    //-             a(href=`/users/${user._id}`)= user.name
+    //-           td= user.email
+    //-           td= moment(user.createdAt).format('YYYY-MM-DD HH:mm:ss')
+    //-           td
+    //-             a.btn.btn-sm.btn-outline-secondary(href=`/users/${user._id}/edit`) 
+    //-               | #[i.fas.fa-edit] Edit
+    //-             | 
+    //-             a.btn.btn-sm.need-confirm-btn.btn-outline-danger(href=`/users/${user._id}?_method=DELETE`)
+    //-               | #[i.fa.fa-trash] Delete
 block content
   |
   br
@@ -10,8 +33,37 @@ block content
       // Control the column width, and how they should appear on different devices
       .row
         .col-sm-3
-          ul.list-group.list-group-flush
-            | 
+
+          //- a(href='events?term=networking`')
+          //-   .ih-item.square.effect6.from_top_and_bottom(style='height:100%')
+          //-     a(href=`events?term=networking`)
+          //-       .img(style='height:100%')
+          //-         img(src='./images/network.JPG', alt='img', style='height:100%')
+          //-       |                             
+          //-       .text
+          //-         h3 Networking
+
+          //-       |                             
+          //-       .info
+          //-         h3 Networrking
+
+          //-         |                                 
+          //-         p Business mixers, hobby meetups, and panel discussions
+                    //- table.table.table-hover
+                    //-   thead
+                    //-     tr
+                    //-       th 분야
+                    //-   tbody
+                    //-     //- each competition in competitions
+                    //-     //-   tr
+                    //-     //-     td
+                    //-     //-       a.field(href=`/competitions/${competition.id}`)= competition.field
+                    //-     .competitions
+                    //-       each competition in competitions.docs
+                    //-         .competition
+                    //-           a.field(href=`/competitions/${competition.id}`)= competition.field
+                    //-         ul.list-group.list-group-flush
+                    //-   | 
             li.list-group-item 기획/아이디어
             li.list-group-item 광고/마케팅
             li.list-group-item 논문.리포트

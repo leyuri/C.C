@@ -49,8 +49,6 @@ block content
           br
 
 
-      include _competition
-
       .buttons
         if currentUser
           button.btn.btn-outline-primary.competition-like-btn(data-id=competition.id) 
@@ -58,9 +56,17 @@ block content
             span #[i.fa.fa-thumbs-up] Like
           |
           |
-          button.btn.btn.btn-outline-success(href="" onclick="alert('보관함에 저장되었습니다.')")
-            i.fas.fa-heart.competition-icon(aria-hidden='true', data-id=competition._id)
-            | &nbsp; Add favorite
+          button.btn.btn-outline-primary.competition-like2-btn(data-id=competition.id) 
+            //- span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
+            span #[i.fa.fa-thumbs-up] Like2
+          |
+          |
+          button.btn.btn-outline-primary.competition-favorite-btn(data-id=competition.id) 
+            //- span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
+            span #[i.fa.fa-thumbs-up] favorite        
+                //- button.btn.btn.btn-outline-success(href="" onclick="alert('보관함에 저장되었습니다.')")
+                //-   i.fas.fa-heart.competition-icon(aria-hidden='true', data-id=competition._id)
+                //-   | &nbsp; Add favorite
                
           button.a.btn.btn-outline-dark(href=`/competitions/${competition._id}/favorite` type='button', data-toggle='modal', data-target='#exampleModal', data-whatever='@mdo')
             i.fas.fa-bomb

@@ -1,6 +1,7 @@
 const express = require('express');
 const Competition = require('../models/competition');
 const Answer = require('../models/answer'); 
+const User = require('../models/user');
 const catchErrors = require('../lib/async-error');
 const Favorite = require('../models/favorite');
 
@@ -41,25 +42,35 @@ router.get('/new', needAuth, (req, res, next) => {
   res.render('competitions/new', {competition: {}});
 });
 
-router.post('/:id/favorite', catchErrors(async (req, res, next) => {
-  console.log('지나감1');
-  const competition = await Competition.findById(req.params.id);
-  if (!competition) {
-    return next({status: 404, msg: 'Not exist competition'});
-  }
-  console.log('지나감2');
-  console.log(req.user._id);
-  console.log(competition._id);
-  var favorite = await Favorite.findOne({author: req.user._id, competition: req.params.id});
-  console.log('지나감3');
-  if (!favorite) {
-    Favorite.create({author: req.user._id, competition: competition._id})
-  }
-  console.log('지나감4');
-  return res.json(competition);
-}));
+// router.post('/:id/favorite', catchErrors(async (req, res, next) => {
+//   console.log('지나감1');
+//   const competition = await Competition.findById(req.params.id);
+//   if (!competition) {
+//     return next({status: 404, msg: 'Not exist competition'});
+//   }
+//   console.log('지나감2');
+//   console.log(req.user._id);
+//   console.log(competition._id);
+//   var favorite = await Favorite.findOne({author: req.user._id, competition: req.params.id});
+//   console.log('지나감3');
+//   if (!favorite) {
+//     Favorite.create({author: req.user._id, competition: competition._id})
+//   }
+//   console.log('지나감4');
+//   return res.json(competition);
+// }));
 
-
+// router.get('/:id/favorite', needAuth, (req, res, next) => {
+//   const competition = Competition.findById(req.params.id, function(err, competition) {
+//     const user = User.findById(req.user.id, function(err, user) {
+//       user.favorite.push(competition._id);
+//       user.save(function(err) {
+//         req.flash('success', 'Successfully Add My ');
+//         res.redirect('back');
+//       });
+//     });
+//   });
+// });
 
 
 router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {

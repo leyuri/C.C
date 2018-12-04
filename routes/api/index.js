@@ -3,7 +3,7 @@ const Competition = require('../../models/competition');
 const Answer = require('../../models/answer'); 
 const Favorite = require('../../models/favorite');
 const LikeLog = require('../../models/like-log'); 
-const LikeLog2 = require('../../models/like-log2'); 
+// const LikeLog2 = require('../../models/like-log2'); 
 const catchErrors = require('../../lib/async-error');
 
 const router = express.Router();
@@ -65,22 +65,7 @@ router.post('/competitions/:id/like', catchErrors(async (req, res, next) => {
   return res.json(competition);
 }));
 
-//like2 
-router.post('/competitions/:id/like2', catchErrors(async (req, res, next) => {
-  const competition = await Competition.findById(req.params.id);
-  if (!competition) {
-    return next({status: 404, msg: 'Not exist competition'});
-  }
-  var likeLog2 = await LikeLog.findOne({author: req.user._id, competition: competition._id});
-  if (!likeLog2) {
-    // competition.numLikes++;
-    await Promise.all([
-      competition.save(),
-      LikeLog.create({author: req.user._id, competition: competition._id})
-    ]);
-  }
-  return res.json(competition);
-}));
+
 
 
 

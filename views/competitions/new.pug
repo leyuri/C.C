@@ -3,11 +3,37 @@ extends ../layout
 block content
   .container
     h1.main-title New Competition
-    form#comment_form(action="/competitions", method="POST")
+    form#comment_form(action="/competitions", method='POST')
       include _form
-      button.btn.btn-outline-warning(type="submit") Post Your Competition
+      .g-recaptcha(data-sitekey='6LcaTn4UAAAAAJs8kYbTF0tqxGSxozuaLSizqNbo')
+      br
+      button.btn.btn-outline-warning.input(type='submit', value='Submit')  Post Your Competition
+      //- input.button.btn.btn-outline-warning(type="submit") Post Your Competition
       |
       br
       |
       br  
     
+    //- form#comment_form(action="/competitions", method="POST")
+    //-   include _form
+    //-   button.btn.btn-outline-warning(type="submit") Post Your Competition
+    //-   |
+    //-   br
+    //-   |
+    //-   br  
+    
+
+
+    //- form(action="/competitions", method='POST')
+    //-   include _form
+    //-   .g-recaptcha(data-sitekey='your_site_key')
+    //-   br
+    //-   input(type='submit', value='Submit')
+
+
+    //- form#comment_form(action="/competitions", method='POST')
+    //-   include _form
+    //-   .g-recaptcha(data-sitekey='6LcaTn4UAAAAAJs8kYbTF0tqxGSxozuaLSizqNbo')
+    //-   br
+    //-   button.btn.btn-outline-warning(type="submit") Post Your Competition
+

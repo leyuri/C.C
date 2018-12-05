@@ -5,7 +5,7 @@ block content
 
       
     h1.main-title= competition.title
-
+    .content= competition.status
     .competition.show
       .row
         .col-sm-8
@@ -48,7 +48,7 @@ block content
           .content= competition.contact
           br
 
-
+      include _competition
       .buttons
         if currentUser
           button.btn.btn-outline-primary.competition-like-btn(data-id=competition.id) 
@@ -115,32 +115,51 @@ block content
             a.btn.btn-outline-danger.need-confirm-btn(href=`/competitions/${competition.id}?_method=delete`) Delete
 
 
-
-            |
-            |
-            |
-            |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            |
-            |&nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;       
-            a.btn.pull-right.btn-outline-info(href=`/competitions/${competition._id}/favorite`) 
-              i.fas.fa-share-alt-square(style='color: #2ECCFA')
-              | &nbsp; twitter
-            |&nbsp;
-            |&nbsp;
-            |
-            |
-            |
-            |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            a.btn.pull-right.btn-outline-primary(href=`/competitions/${competition._id}/favorite`) 
-              i.fas.fa-share-alt-square(style='color: #1E90FF')
-              | &nbsp; facebook
+                //-           |&nbsp;      
+                //-           a.btn.btn-outline-info(href='#', onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20'\
+                //-           +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog',\
+                //-           'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;", target='_blank', alt='Share on Twitter')
+                //-             i.fas.fa-share-alt-square(style='color: #2ECCFA')
+                //-             | &nbsp; twitter
+                //-           //- |&nbsp;
+                //-           //- |&nbsp;
+                //-           //- |
+                //-           //- |
+                //-           //- |
+                //-           //- |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                //-           a.btn.btn-outline-primary(href='#', onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u='\
+                //- +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog',\
+                //- 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;", target='_blank', alt='Share on Facebook')
+                //-             i.fas.fa-share-alt-square(style='color: #1E90FF')
+                //-             | &nbsp; facebook
           
             //- a.fa.fa-facebook(href='#')
             //- a.fa.fa-twitter(href='#') 왜 안먹어;
+            //- SNS 공유하기 !
+            .SNS_Share_Top.hidden-xs
+              // Share on Twitter
+              a(href='#', onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20'\
+              +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog',\
+              'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;", target='_blank', alt='Share on Twitter')
+                img(src='/images/Twitter.png' width=30)
+              // Share on Facebook
+              a(href='#', onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u='\
+              +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog',\
+              'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;", target='_blank', alt='Share on Facebook')
+                img(src='/images/Facebook.png' width=30)
+              // Share on Google+
+              a(href='#', onclick="javascript:window.open('https://plus.google.com/share?url='+encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=600');return false;", target='_blank', alt='Share on Google+')
+                img(src='/images/Google_Plus.png' width=30)
+              // Share on Kakaostory
+              a(href='#', onclick="javascript:window.open('https://story.kakao.com/s/share?url='+encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;", target='_blank', alt='Share on kakaostory')
+                img(src='/images/Kakao_Story.png' width=30)
+              // Share on Naver
+              a(href='#', onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url='\
+              +encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title),\
+              'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;", target='_blank', alt='Share on Naver')
+                img(src='/images/Naver.png' width=30)
 
-
-
-
+    
 
     if competition.numAnswers > 0
       hr

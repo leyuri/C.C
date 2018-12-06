@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const Favorite = require('../models/favorite');
+// const Favorite = require('../models/favorite');
 const Schema = mongoose.Schema;
 
 var schema = new Schema({
@@ -14,7 +14,6 @@ var schema = new Schema({
   kakaotalk: {id: String, token: String, photo: String},
   google: {id: String, token: String, photo: String},
   favorite: [{type: Schema.Types.ObjectId, ref: 'Competition'}],
-  
   createdAt: {type: Date, default: Date.now}
 }, {
   toJSON: { virtuals: true},

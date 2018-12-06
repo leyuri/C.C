@@ -1,7 +1,8 @@
 const express = require('express');
 const User = require('../models/user');
+const Competition = require('../models/competition');
 const router = express.Router();
-const Favorite = require('../models/favorite');
+// const Favorite = require('../models/favorite');
 const catchErrors = require('../lib/async-error');
 
 function needAuth(req, res, next) {
@@ -76,18 +77,109 @@ router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
   res.render('users/edit', {user: user});
 }));
 
-router.get('/:id/favorite', needAuth, catchErrors(async(req,res,next) => {
-  const user = await User.findById(req.params.id);
-  const favorite = await Favorite.find({author: user._id}).populate('competition');
-  res.render('users/favorite', {favorite: favorite});
+
+// router.get('/:id/registered', needAuth, catchErrors(async (req, res, next) => {
+//   const user = await User.findById(req.params.id);
+//   res.render('users/registered', {user: user});
+// }));
+
+
+// router.get('/:id/registered', needAuth, catchErrors(async (req, res, next) => {
+//   const user = await User.findById(req.params.id);
+//   res.render('users/registered', {user: user});
+// }));
+
+// router.get('/:id/registered', catchErrors(async (req, res, next) => {
+//   var users= User.findById(req.params.id, function(err, users) {
+//     var competition = Competition.find({}, function(err, competition) {
+//         var competitions = Competition.find({author: users.id}, function(err, competitions) {
+//             res.render('users/registered', {users: users, competitions: competitions, 
+//           });
+         
+//         });
+//     });
+//   });
+// }));
+
+router.get('/:id/registered', catchErrors(async (req, res, next) => {
+  var users= User.findById(req.params.id, function(err, users) {
+    var competition = Competition.find({}, function(err, competition) {
+        var competitions = Competition.find({author: users.id}, function(err, competitions) {
+          var favorites = Competition.find({_id: users.favorite}, function(err, s) {
+            res.render('users/registered', {users: users, competitions: competitions, favorites: favorites
+            });
+          });
+        });
+    });
+  });
 }));
 
+//버튼
 
-// router.get('/:id/', needAuth, catchErrors(async(req,res,next) => {
-//   const user = await User.findById(req.params.id);
-//   const registered = await Favorite.find({author: user._id}).populate('competition');
-//   res.render('users/registered', {favorite: favorite});
+// button.a.btn.btn-outline-success(href=href=`/competitions/${competition._id}/favorite`)
+// i.fas.fa-heart
+// | &nbsp; favorite
+
+// //competitions
+// router.get('/:id/favorite', needAuth, (req, res, next) => {
+//   const competition = Competition.findById(req.params.id, function(err, competition) {
+//     const user = User.findById(req.user.id, function(err, user) {
+//       user.favorite.push(competition._id);
+//       user.save(function(err) {
+//         req.flash('success', 'Successfully Add My ');
+//         res.redirect('back');
+//       });
+//     });
+//   });
+// });
+
+// router.get('/:id/registered', catchErrors(async (req, res, next) => {
+//   var users= User.findById(req.params.id, function(err, users) {
+//     var competition = Competition.find({}, function(err, competition) {
+//         var competitions = Competition.find({author: users.id}, function(err, competitions) {
+//           var favorites = Competition.find({_id: users.favorite}, function(err, s) {
+//             res.render('users/registered', {users: users, competitions: competitions, favorites: favorites
+//             });
+//           });
+//         });
+//     });
+//   });
 // }));
+
+//user.........
+router.get('/:id', catchErrors(async (req, res, next) => {
+  var users= User.findById(req.params.id, function(err, users) {
+    var competition = Competition.find({}, function(err, competition) {
+        var competitions = Competition.find({author: users.id}, function(err, competitions) {
+          var favorites = Competition.find({_id: users.favorite}, function(err, s) {
+            res.render('users/show', {users: users, competitions: competitions, favorites: favorites
+            });
+          });
+        });
+    });
+  });
+}));
+
+// router.get('/:id', catchErrors(async (req, res, next) => {
+//   const users = await User.findById(req.params.id);
+
+
+//   res.render('users/show', {users: users});
+  
+// }));
+
+router.get('/:id', catchErrors(async (req, res, next) => {
+  var users= User.findById(req.params.id, function(err, users) {
+    var competition = Competition.find({}, function(err, competition) {
+        var competitions = Competition.find({author: users.id}, function(err, competitions) {
+          var favorites = Competition.find({_id: users.favorite}, function(err, s) {
+            res.render('users/show', {users: users, competitions: competitions, favorites: favorites
+            });
+          });
+        });
+    });
+  });
+}));
 
 
 router.put('/:id', needAuth, catchErrors(async (req, res, next) => {
@@ -128,27 +220,43 @@ router.delete('/:id', needAuth, catchErrors(async (req, res, next) => {
   res.redirect('/users');
 }));
 
-router.get('/:id', catchErrors(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
-  res.render('users/show', {user: user});
-}));
+// // router.get('/:id', catchErrors(async (req, res, next) => {
+// //   const user = await User.findById(req.params.id);
+// //   res.render('users/show', {user: user});
+// // }));
+
+// router.get('/:id', catchErrors(async (req, res, next) => {
+//   var users= User.findById(req.params.id, function(err, users) {
+//     var competition = Competition.find({}, function(err, competition) {
+//       var recommends = Competition.find({_id: competition.recommend}, function(err, recommends) {
+//         var competitions = Competition.find({author: users.id}, function(err, competitions) {
+//           var favorites = Competition.find({_id: users.favorite}, function(err, s) {
+//             res.render('users/show', {users: users, competitions: competitions, favorites: favorites, recommends: recommends
+//             });
+//           });
+//         });
+//       });
+//     });
+//   });
+// }));
+
+// router.get('/:id', (req, res, next) => {
+
+//   var users= User.findById(req.params.id, function(err, users) {
+//     var competition = Competition.find({}, function(err, competition) {
+//       var recommends = Competition.find({_id: competition.recommend}, function(err, recommends) {
+//         var competitions = Competition.find({author: users.id}, function(err, competitions) {
+//           var favorites = Competition.find({_id: users.favorite}, function(err, s) {
+//             res.render('users/show', {users: users, competitions: competitions, favorites: favorites, recommends: recommends
+//             });
+//           });
+//         });
+//       });
+//     });
+//   });
+// });
 
 
-router.get('/:id', (req, res, next) => {
-
-  var users= User.findById(req.params.id, function(err, users) {
-    var competition = Competition.find({}, function(err, competition) {
-      var recommends = Competition.find({_id: competition.recommend}, function(err, recommends) {
-        var competitions = Competition.find({author: users.id}, function(err, competitions) {
-          var favorites = Competition.find({_id: users.favorite}, function(err, s) {
-            res.render('users/show', {users: users, competitions: competitions, favorites: favorites, recommends: recommends
-            });
-          });
-        });
-      });
-    });
-  });
-});
 
 router.post('/', catchErrors(async (req, res, next) => {
   var err = validateForm(req.body, {needPassword: true});

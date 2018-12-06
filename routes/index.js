@@ -19,6 +19,8 @@ router.get('/', catchErrors(async (req, res, next) => {  //await를 사용하기
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
 
+
+
   var query = {};
   const term = req.query.term;
   if (term) {
@@ -26,6 +28,11 @@ router.get('/', catchErrors(async (req, res, next) => {  //await를 사용하기
       {title: {'$regex': term, '$options': 'i'}},
       {content: {'$regex': term, '$options': 'i'}},
       {location: {'$regex': term, '$options': 'i'}},
+      {field: {'$regex': term, '$options': 'i'}},
+      {status: {'$regex': term, '$options': 'i'}},
+      {sponsor: {'$regex': term, '$options': 'i'}},
+      {award: {'$regex': term, '$options': 'i'}},
+      {participant: {'$regex': term, '$options': 'i'}},
       {tags: {'$regex': term, '$options': 'i'}}
     ]};
   }
@@ -57,14 +64,4 @@ router.get('/signout', function (req, res){
 
 module.exports = router;
 
-// var express = require('express');
-// var router = express.Router();
-
-// /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index');
-// });
-
-
-// module.exports = router;
 

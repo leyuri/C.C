@@ -1,26 +1,26 @@
 $(function() {
 
-  $('.competition-favorite-btn').click(function(e) {
-    var $el = $(e.currentTarget); 
-    $.ajax({
-      url: '/api/competitions/' + $el.data('id') + '/favorite',
-      method: 'POST',
-      dataType: 'json',
-      success: function(data) {
-      },
-      error: function(data, status) {
-        if (data.status == 401) {
-          alert('Login required!');
-          location = '/';
-        }
-        console.log(data, status);
-      }
-      // ,
-      // complete: function(data) {
-      //   $el.removeClass('loading');
-      // }
-    });
-  });
+  // $('.competition-favorite-btn').click(function(e) {
+  //   var $el = $(e.currentTarget); 
+  //   $.ajax({
+  //     url: '/api/competitions/' + $el.data('id') + '/favorite',
+  //     method: 'POST',
+  //     dataType: 'json',
+  //     success: function(data) {
+  //     },
+  //     error: function(data, status) {
+  //       if (data.status == 401) {
+  //         alert('Login required!');
+  //         location = '/';
+  //       }
+  //       console.log(data, status);
+  //     }
+  //     // ,
+  //     // complete: function(data) {
+  //     //   $el.removeClass('loading');
+  //     // }
+  //   });
+  // });
 
 
 

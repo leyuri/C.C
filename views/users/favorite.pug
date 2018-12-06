@@ -1,32 +1,39 @@
 extends ../layout
-
+include ../includes/_paginate
 
 block content
   .container
-    br
-    h1.main-title My favorite
-    br
-    br
-    if(favorite.total <= 0)
-      p 저장된 공모전이 없습니다. 
-      br
-    else
-      table.table.table-hover
-        thead
+    h1.main-title Registered Competitions 
+
+
+
+    table.table.table-hover
+      thead
+        tr
+          th Title
+          th Status
+          th
+          //- th Start Time
+          //- th Participant
+ 
+      tbody
+        each competition in competitions
           tr
-            th
-            th Title
-            th Person
-        tbody
-          - var num = 1;
-          each f in favorite
-            tr
-              td= num++
-              td= f.competition.title
-              td= f.competition.person
-        
-              
-
-
-
-
+            td 
+              a(href=`/competitions/${competition._id}`)= competition.title
+              td= competition.status
+              //- td= competition.startTime
+              //- td= competition.participantN
+              td
+                a.btn.btn-sm.btn-outline-secondary(href=`/competitions/${competition._id}/edit`) 
+                  | #[i.fa.fa-pencil] Edit
+                | 
+                a.btn.btn-sm.btn-outline-danger(href=`/competitions/${competition._id}?_method=DELETE`)
+                  | #[i.fa.fa-trash] Delete
+                //- |
+                //- |
+                //- a.btn.btn-sm.btn-outline-dark(href=`/competitions/${competition.id}/participantL`) Participate Lists
+                //- |
+                //- |
+                //- a.btn.btn-sm.btn-outline-dark(href=`/competitions/${competition.id}/survey`) Survey Result
+    br

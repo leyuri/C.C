@@ -1,7 +1,7 @@
 const express = require('express');
 const Competition = require('../../models/competition'); 
 const Answer = require('../../models/answer'); 
-const Favorite = require('../../models/favorite');
+// const Favorite = require('../../models/favorite');
 const LikeLog = require('../../models/like-log'); 
 // const LikeLog2 = require('../../models/like-log2'); 
 const catchErrors = require('../../lib/async-error');
@@ -20,33 +20,21 @@ router.use(catchErrors(async (req, res, next) => {
 router.use('/competitions', require('./competitions'));
 
 //favorite for Competition
-router.post('/competitions/:id/favorite', catchErrors(async (req, res, next) => {
-  const competition = await Event.findById(req.params.id);
-  if (!competition) {
-    return next({status: 404, msg: 'Not exist events'});
-  }
-  var favorite = await Favorite.findOne({author: req.user._id, competition: competition._id});
-  if (!favorite) {
-    await Promise.all([
-      Favorite.create({author: req.user._id, competition: competition._id})
-    ]);
-  }
-  return res.json(competition);
-}));
+// router.post('/competitions/:id/favorite', catchErrors(async (req, res, next) => {
+//   const competition = await Event.findById(req.params.id);
+//   if (!competition) {
+//     return next({status: 404, msg: 'Not exist events'});
+//   }
+//   var favorite = await Favorite.findOne({author: req.user._id, competition: competition._id});
+//   if (!favorite) {
+//     await Promise.all([
+//       Favorite.create({author: req.user._id, competition: competition._id})
+//     ]);
+//   }
+//   return res.json(competition);
+// }));
 
-router.post('/events/:id/favorite', catchErrors(async (req, res, next) => {
-  const event = await Event.findById(req.params.id);
-  if (!event) {
-    return next({status: 404, msg: 'Not exist events'});
-  }
-  var favorite = await Favorite.findOne({author: req.user._id, event: event._id});
-  if (!favorite) {
-    await Promise.all([
-      Favorite.create({author: req.user._id, event: event._id})
-    ]);
-  }
-  return res.json(event);
-}));
+
 
 // Like for Competition
 router.post('/competitions/:id/like', catchErrors(async (req, res, next) => {

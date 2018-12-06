@@ -1,39 +1,71 @@
 extends ../layout
+include ../includes/_paginate
 
 block content
   .container
-    h1.main-title= user.name
+    h1.main-title= users.name
+    //- h1.main-title= user.name
           
     dl.row
       dt.col-sm-3 Email
       dd.col-sm-9
-        a(href=`mailto:${user.email}`, style='color:black')= user.email
+        a(href=`mailto:${users.email}`, style='color:black')= users.email
 
       dt.col-sm-3 address
       dd.col-sm-9
-        a(href=`mailto:${user.address}`, style='color:black')= user.address
+        a(href=`mailto:${users.address}`, style='color:black')= users.address
       dt.col-sm-3 sex
       dd.col-sm-9
-        a(href=`mailto:${user.sex}`, style='color:black')= user.sex
+        a(href=`mailto:${users.sex}`, style='color:black')= users.sex
       dt.col-sm-3 birthday
       dd.col-sm-9
-        a(href=`mailto:${user.birthday}`, style='color:black')= user.birthday
+        a(href=`mailto:${users.birthday}`, style='color:black')= users.birthday
       dt.col-sm-3 Created At
-      dd.col-sm-9= user.createdAt
+      dd.col-sm-9= users.createdAt
       
-      if user.facebook.id
+      if users.facebook.id
         dt.col-sm-3 Facebook
         dd.col-sm-9
-          img.img-fluid.rounded-circle(src= user.facebook.photo)
+          img.img-fluid.rounded-circle(src= users.facebook.photo)
+      if users.kakaotalk.id
+        dt.col-sm-3 kakaotalk
+        dd.col-sm-9
+          img.img-fluid.rounded-circle(src= users.kakaotalk.photo)
+      if users.google.id
+        dt.col-sm-3 google
+        dd.col-sm-9
+          img.img-fluid.rounded-circle(src= users.google.photo)
 
     hr
     p
-      a.btn.btn-outline-secondary(href='/users/') List
+      //- a.btn.btn-outline-secondary(href='/users/') List
       | 
-      a.btn.btn-outline-primary(href=`/users/${user._id}/edit`) Edit
+      a.btn.btn-outline-primary(href=`/users/${users._id}/edit`) Edit
       | 
-      a.btn.btn-outline-danger.need-confirm-btn(href=`/users/${user._id}?_method=DELETE`) Delete
+      a.btn.btn-outline-danger.need-confirm-btn(href=`/users/${users._id}?_method=DELETE`) Delete
       |
       br
       |
       br
+
+
+
+    //- h3
+    //-   | My Favorite
+    //- br
+    //- table.table.table-hover
+    //-   thead
+    //-     tr
+    //-       th Title
+    //-       th Location
+    //-       th Start Time
+
+    //-   tbody
+    //-     each favorite in favorites
+    //-       tr
+    //-         td 
+    //-           a(href=`/competitions/${favorite._id}`)= favorite.title
+    //-           td= favorite.location
+    //-           td= favorite.startTime
+
+       

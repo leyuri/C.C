@@ -1,4 +1,4 @@
-
+//- .content= competition.content
 .tags.badges
   each tag in competition.tags
     span.badge.badge-phill.badge-secondary= tag
@@ -14,6 +14,8 @@
       | asked on #{moment(competition.createdAt).format('YYYY-MM-DD')}
       if competition.author
         | 
-        | by #[a(href=`/users/${competition.author.id}`)= competition.author.name] 
+        if (currentUser && currentUser.email == 'admin@gmail.com')
+        | by #{competition.author.name}
 
 
+//- if (competition.author.id == currentUser.id || currentUser && currentUser.email == 'admin@gmail.com')

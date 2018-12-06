@@ -1,31 +1,39 @@
 extends ../layout
-
 include ../includes/_paginate
 
 block content
   .container
-    form.form-inline.search-input-group(action='/competitions', method='GET')
-      input.form-control.mr-sm-2(type='text', name='term', placeholder='Search', aria-label='Search', value=term)
+    h1.main-title Registered Competitions 
 
-    h1.main-title 
-      | Competitions
-      if competitions.total > 0
-        .small Total #{competitions.total} competition(s)
 
-    if competitions.total <= 0 
-      .alert.alert-info No competitions available yet
-    else
-      .competitions
-        each competition in competitions.docs
-          .competition
-            a.title(href=`/competitions/${competition.id}`)= competition.title
-            include _competition
 
-      +paginate(competitions, '/competitions', query)
-
-    hr
-    a.btn.btn-warning(href='/competitions/new' style='color: white') #[i.fa.fa-plus] Create Competition
-    |
-    br
-    |
+    table.table.table-hover
+      thead
+        tr
+          th Title
+          th Status
+          th
+          //- th Start Time
+          //- th Participant
+ 
+      tbody
+        each competition in competitions
+          tr
+            td 
+              a(href=`/competitions/${competition._id}` style='color: brown')= competition.title
+              td= competition.status
+              //- td= competition.startTime
+              //- td= competition.participantN
+              td
+                a.btn.btn-sm.btn-outline-secondary(href=`/competitions/${competition._id}/edit`) 
+                  | #[i.fa.fa-pencil] Edit
+                | 
+                a.btn.btn-sm.btn-outline-danger(href=`/competitions/${competition._id}?_method=DELETE`)
+                  | #[i.fa.fa-trash] Delete
+                //- |
+                //- |
+                //- a.btn.btn-sm.btn-outline-dark(href=`/competitions/${competition.id}/participantL`) Participate Lists
+                //- |
+                //- |
+                //- a.btn.btn-sm.btn-outline-dark(href=`/competitions/${competition.id}/survey`) Survey Result
     br

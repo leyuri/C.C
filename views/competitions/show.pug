@@ -4,10 +4,43 @@ block content
   .container
 
       
-    h1.main-title= competition.title
-    .content= competition.status
+    h1.main-title= competition.title 
+    //- .content(style='float:right;')= competition.status 
+    .SNS_Share_Top.hidden-xs(style='float:right; margin: 0px 0px 10px 10px; padding: 0px;')  
+      // Share on Twitter
+      a(href='#', onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20'\
+      +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog',\
+      'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;", target='_blank', alt='Share on Twitter')
+        img(src='/images/Twitter.png' width=30)
+      // Share on Facebook
+      a(href='#', onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u='\
+      +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog',\
+      'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;", target='_blank', alt='Share on Facebook')
+        img(src='/images/Facebook.png' width=30)
+      // Share on Google+
+      a(href='#', onclick="javascript:window.open('https://plus.google.com/share?url='+encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=600');return false;", target='_blank', alt='Share on Google+')
+        img(src='/images/Google_Plus.png' width=30)
+      // Share on Kakaostory
+      a(href='#', onclick="javascript:window.open('https://story.kakao.com/s/share?url='+encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;", target='_blank', alt='Share on kakaostory')
+        img(src='/images/Kakao_Story.png' width=30)
+      // Share on Naver
+      a(href='#', onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url='\
+      +encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title),\
+      'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;", target='_blank', alt='Share on Naver')
+        img(src='/images/Naver.png' width=30) 
+    .content(style='float:right; font: bold italic 1.6em/1.0em 돋움체;')= competition.status 
+
+    //- font: bold italic 2.0em/1.0em 돋움체;
+    //- .content.button.btn.btn-outline-success(style='float:right;')= competition.status 
+    //- .content.button.btn.btn-outline-warning( style='float:right;')= competition.status 
+    //- button.btn.btn-outline-success(href=``)= competition.status 
+    //-   i.fas.fa-heart
+    //-   | &nbsp; favorite
+    br
+    
     .competition.show
       .row
+  
         .col-sm-8
           | 공모요강
           .content= competition.content
@@ -47,6 +80,9 @@ block content
           | 연락처
           .content= competition.contact
           br
+          | 장소
+          .content= competition.location
+          br
 
       include _competition
       .buttons
@@ -57,7 +93,11 @@ block content
           |
           |
           |
-          button.btn.btn-outline-primary.competition-favorite-btn(data-id=competition.id) 
+          //- (href=`/competitions/${competition._id}/favorite`)
+          button.a.btn.btn-outline-success(href=`/competitions/${competition._id}/favorite`)
+            i.fas.fa-heart
+            | &nbsp; favorite
+          //- button.btn.btn-outline-primary.competition-favorite-btn(data-id=competition.id) 
             //- span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
             span #[i.fa.fa-thumbs-up] favorite        
                 //- button.btn.btn.btn-outline-success(href="" onclick="alert('보관함에 저장되었습니다.')")
@@ -136,28 +176,28 @@ block content
             //- a.fa.fa-facebook(href='#')
             //- a.fa.fa-twitter(href='#') 왜 안먹어;
             //- SNS 공유하기 !
-            .SNS_Share_Top.hidden-xs
-              // Share on Twitter
-              a(href='#', onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20'\
-              +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog',\
-              'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;", target='_blank', alt='Share on Twitter')
-                img(src='/images/Twitter.png' width=30)
-              // Share on Facebook
-              a(href='#', onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u='\
-              +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog',\
-              'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;", target='_blank', alt='Share on Facebook')
-                img(src='/images/Facebook.png' width=30)
-              // Share on Google+
-              a(href='#', onclick="javascript:window.open('https://plus.google.com/share?url='+encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=600');return false;", target='_blank', alt='Share on Google+')
-                img(src='/images/Google_Plus.png' width=30)
-              // Share on Kakaostory
-              a(href='#', onclick="javascript:window.open('https://story.kakao.com/s/share?url='+encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;", target='_blank', alt='Share on kakaostory')
-                img(src='/images/Kakao_Story.png' width=30)
-              // Share on Naver
-              a(href='#', onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url='\
-              +encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title),\
-              'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;", target='_blank', alt='Share on Naver')
-                img(src='/images/Naver.png' width=30)
+            //- .SNS_Share_Top.hidden-xs
+            //-   // Share on Twitter
+            //-   a(href='#', onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20'\
+            //-   +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog',\
+            //-   'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;", target='_blank', alt='Share on Twitter')
+            //-     img(src='/images/Twitter.png' width=30)
+            //-   // Share on Facebook
+            //-   a(href='#', onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u='\
+            //-   +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog',\
+            //-   'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;", target='_blank', alt='Share on Facebook')
+            //-     img(src='/images/Facebook.png' width=30)
+            //-   // Share on Google+
+            //-   a(href='#', onclick="javascript:window.open('https://plus.google.com/share?url='+encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=600');return false;", target='_blank', alt='Share on Google+')
+            //-     img(src='/images/Google_Plus.png' width=30)
+            //-   // Share on Kakaostory
+            //-   a(href='#', onclick="javascript:window.open('https://story.kakao.com/s/share?url='+encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;", target='_blank', alt='Share on kakaostory')
+            //-     img(src='/images/Kakao_Story.png' width=30)
+            //-   // Share on Naver
+            //-   a(href='#', onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url='\
+            //-   +encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title),\
+            //-   'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;", target='_blank', alt='Share on Naver')
+            //-     img(src='/images/Naver.png' width=30)
 
     
 
@@ -198,13 +238,11 @@ block content
 
 //- .form-group
 //-   label.col-form-label(for='recipient-name') 작성자:
-
 //-   input#recipient-name.form-control(type='text')
 //- .form-group
 //-   label.col-form-label(for='recipient-content') 공모전 이름:
 //-     h5.main-title= competition.title
 //- input#recipient-name.form-control(type='text')
-
 //-         |
 //- a(href='' onclick="alert('북마크 되었습니다')")
 //-       //- btn.btn-outline-success(href=`/competitions/${competition._id}/favorite`) 
@@ -212,7 +250,6 @@ block content
 //-   | &nbsp; Favorite
 //- |
 //- |
-
 //-           //- a(href='' onclick="alert('북마크 되었습니다')")
 //-           //-   i.fa.fa-bookmark-o.competition-icon(aria-hidden='true', data-id=competition._id)
 //-       //- a.btn.btn-outline-dark(href='#' onclick="alert('북마크 되었습니다')") 

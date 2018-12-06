@@ -1,86 +1,67 @@
 extends layout
+include ./includes/_paginate
 
 block hero-unit
 
-
-    //- h1.main-title Users
-    //- if (currentUser.email == 'admin@gmail.com')
-    //-   table.table.table-hover
-    //-     thead
-    //-       tr
-    //-         th Name
-    //-         th Email
-    //-         th Created At
-    //-         th
-    //-     tbody
-    //-       each user in users
-    //-         tr
-    //-           td
-    //-             a(href=`/users/${user._id}`)= user.name
-    //-           td= user.email
-    //-           td= moment(user.createdAt).format('YYYY-MM-DD HH:mm:ss')
-    //-           td
-    //-             a.btn.btn-sm.btn-outline-secondary(href=`/users/${user._id}/edit`) 
-    //-               | #[i.fas.fa-edit] Edit
-    //-             | 
-    //-             a.btn.btn-sm.need-confirm-btn.btn-outline-danger(href=`/users/${user._id}?_method=DELETE`)
-    //-               | #[i.fa.fa-trash] Delete
 block content
+  |
+  br
+  |
+  br
   |
   br
   .container
     .container-fluid
       // Control the column width, and how they should appear on different devices
+
       .row
         .col-sm-3
+          .list-group
 
-          //- a(href='events?term=networking`')
-          //-   .ih-item.square.effect6.from_top_and_bottom(style='height:100%')
-          //-     a(href=`events?term=networking`)
-          //-       .img(style='height:100%')
-          //-         img(src='./images/network.JPG', alt='img', style='height:100%')
-          //-       |                             
-          //-       .text
-          //-         h3 Networking
+            a.list-group-item.list-group-item-action(href=''  style= 'background-color:#ffbf00' ) 분야
+            a.list-group-item.list-group-item-action(href='competitions?term=Planning / Ideas') 기획/아이디어
+            a.list-group-item.list-group-item-action(href='competitions?term=Advertising / Marketing') 광고/마케팅      
+            a.list-group-item.list-group-item-action(href='competitions?term=Articles / Reports')  논문/리포트
+            a.list-group-item.list-group-item-action(href='competitions?term=Video / UCC / Photo')  영상/UCC/사진
+            a.list-group-item.list-group-item-action(href='competitions?term=Design / Character / Webtoon')  디자인/캐릭터/웹툰
+            a.list-group-item.list-group-item-action(href='competitions?term=Web / Mobile / Flash')  웹/모바일/플래시      
+            a.list-group-item.list-group-item-action(href='competitions?term=Games / Software')  게임/소프트웨어
+            a.list-group-item.list-group-item-action(href='competitions?term=Science / Engineering')  과학/공학 
+            a.list-group-item.list-group-item-action(href='competitions?term=Literature / Writing / Scenario')  문학/글/시나리오
+            a.list-group-item.list-group-item-action(href='competitions?term=Architecture / Construction / Interior')  건축/건설/인테리어
+            a.list-group-item.list-group-item-action(href='competitions?term=Arts / Music / Entertainment')  예체능/미술/음악     
+            a.list-group-item.list-group-item-action(href='competitions?term=External Activities / Supporters')  대외활동/서포터즈
+            a.list-group-item.list-group-item-action(href='competitions?term=Volunteer')  봉사활동
+            a.list-group-item.list-group-item-action(href='competitions?term=Employment / Startup')  취업/창업  
+            a.list-group-item.list-group-item-action(href='competitions?term=Overseasg')  해외
+            a.list-group-item.list-group-item-action(href='competitions?term=Others')  기타
 
-          //-       |                             
-          //-       .info
-          //-         h3 Networrking
 
-          //-         |                                 
-          //-         p Business mixers, hobby meetups, and panel discussions
-                    //- table.table.table-hover
-                    //-   thead
-                    //-     tr
-                    //-       th 분야
-                    //-   tbody
-                    //-     //- each competition in competitions
-                    //-     //-   tr
-                    //-     //-     td
-                    //-     //-       a.field(href=`/competitions/${competition.id}`)= competition.field
-                    //-     .competitions
-                    //-       each competition in competitions.docs
-                    //-         .competition
-                    //-           a.field(href=`/competitions/${competition.id}`)= competition.field
-                    //-         ul.list-group.list-group-flush
-                    //-   | 
-            li.list-group-item 기획/아이디어
-            li.list-group-item 광고/마케팅
-            li.list-group-item 논문.리포트
-            li.list-group-item 영상/UCC/사진
-            li.list-group-item 디자인/캐릭터/웹툰
-            li.list-group-item 웹/모바일/플래시
-            li.list-group-item 게임/소프트웨어
-            li.list-group-item 과학/공학
-            li.list-group-item 문학/글/시나리오
-            li.list-group-item 건축/건설/인테리어
-            li.list-group-item 예체능/미술/음악
-            li.list-group-item 대외활동/서포터즈
-            li.list-group-item 봉사활동
-            li.list-group-item 취업/창업
-            li.list-group-item 해외
-            li.list-group-item 기타
-        .col-sm-9
+            a.list-group-item.list-group-item-action(href='' style= 'background-color:#ffbf00' ) 응시대상자
+            a.list-group-item.list-group-item-action(href='competitions?term=No limit') 제한없음
+            a.list-group-item.list-group-item-action(href='competitions?term=Public') 일반인 
+            a.list-group-item.list-group-item-action(href='competitions?term=College' ) 대학생/대학원생
+            a.list-group-item.list-group-item-action(href='competitions?term=Youth' ) 청소년
+            a.list-group-item.list-group-item-action(href='competitions?term=child' ) 어린이
+            a.list-group-item.list-group-item-action(href='competitions?term=Other' ) 기타  
+
+
+            a.list-group-item.list-group-item-action(href='' style= 'background-color:#ffbf00' ) 주최사
+            a.list-group-item.list-group-item-action(href='competitions?term=Government / Public institutions') 정부/공공기관
+            a.list-group-item.list-group-item-action(href='competitions?term=Public enterprisec') 공기업
+            a.list-group-item.list-group-item-action(href='competitions?term=major company' ) 대기업
+            a.list-group-item.list-group-item-action(href='competitions?term=Newspaper / Broadcast / Press' ) 신문/방송/언론
+            a.list-group-item.list-group-item-action(href='competitions?term=Foreign companies' ) 외국계기업
+            a.list-group-item.list-group-item-action(href='competitions?term=Medium / Small / Venture Companies' ) 중견/중소/벤처기업
+            a.list-group-item.list-group-item-action(href='competitions?term=Nonprofit / Association / Foundation' ) 비영리/협회/재단
+            a.list-group-item.list-group-item-action(href='competitions?term=Overseas' ) 해외
+            a.list-group-item.list-group-item-action(href='competitions?term=Others' ) 기타
+          |
+          br
+          |
+          br
+          |
+        .col-sm-9  
           .jumbotron.jumbotron-fluid(style='background:transparent !important')
             .container
               h4.display-10 Competition Collection 공모전 집합소 CC입니다.
@@ -90,85 +71,91 @@ block content
                 | 좋은 공모전을 통하여 다같이 성장할 수 있는 기회가 되길 바랍니다.
               a.btn.pull-right.btn-success(href="/competitions/new", role='button')          
                 | &nbsp; 공모전 등록하러 가기 
-          
-          #carouselExampleFade.carousel.slide.carousel-fade(data-ride='carousel')
-            .carousel-inner
-              .carousel-item.active
-                img.d-block.w-100(src='images/chess.jpg', alt='First slide', height='500')
-                .carousel-caption.d-none.d-md-block
-                  h1 Competition Collection
-                  p
-                    |  환영합니다! Competition Collection 공모전 집합소 CC입니다. 
-              .carousel-item
-                img.d-block.w-100(src='images/golf.jpg', alt='Second slide', height='500')
-                .carousel-caption.d-none.d-md-block
-                  p
-                    |  본 서비스에서는 공모전 관련 정보를 등록하고, 검색 확인할 수 있습니다.  
-              .carousel-item
-                img.d-block.w-100(src='images/chess.jpg', alt='Third slide', height='500')
-                .carousel-caption.d-none.d-md-block
-                  p
-                    | 좋은 공모전을 통하여 다같이 성장할 수 있는 기회가 되길 바랍니다. 
-            a.carousel-control-prev(href='#carouselExampleFade', role='button', data-slide='prev')
-              span.carousel-control-prev-icon(aria-hidden='true')
-              span.sr-only Previous
-            a.carousel-control-next(href='#carouselExampleFade', role='button', data-slide='next')
-              span.carousel-control-next-icon(aria-hidden='true')
-              span.sr-only Next
-
-        
-            |
-            br
-            |
-            br
-            |
-            |
-            |
-          
-                
-            br
-            br
-            .card-group
-              .card
-                img.card-img-top(src='images/poster1.png', alt='Card image cap')
-                .card-body
-                  h5.card-title 2018 빅데이터 아이디어 공모전
-                  p.card-text
-                    //- | 분야: 기획/아이디어, 웹/모바일/플래시, 게임/소프트웨어, 과학/공학, 취업/창업
-                    //- br
-                    //- | 응모대상: 제한없음, 기타
-                    //- br
-                    //- | 주최/주관: 과학기술정보통신부, 정보통신산업진흥원 / 대전광역시,대전정보문화산업진흥원
-
-                  p.card-text
-                    small.text-muted Last updated 3 mins ago
-              .card
-                img.card-img-top(src='images/poster2.jpg', alt='Card image cap')
-                .card-body
-                  h5.card-title Bu:Star 챌린지 게임공모전
-                  //- p.card-text This card has supporting text below as a natural lead-in to additional content.
-                  p.card-text
-                    small.text-muted Last updated 3 mins ago
-              .card
-                img.card-img-top(src='images/poster3.jpg', alt='Card image cap')
-                .card-body
-                  h5.card-title 2018년 ICT 융합 공모전
-                  p.card-text
-                    //- | This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
-                  p.card-text
-                    small.text-muted Last updated 3 mins ago
-              .card
-                img.card-img-top(src='images/poster4.png', alt='Card image cap')
-                .card-body
-                  h5.card-title 네이버 웨일 확장앱 콘테스트
-                  p.card-text
-                    //- | This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
-                  p.card-text
-                    small.text-muted Last updated 3 mins ago
-
-            |
-            br
-            |
-            br
-            |
-            br
+          .row
+            .col-sm-6
+              #carouselExampleFade.carousel.slide.carousel-fade(data-ride='carousel')
+                .carousel-inner
+                  .carousel-item.active
+                    img.d-block.w-100(src='images/poster1.png', alt='First slide', height='500')
+                    .carousel-caption.d-none.d-md-block
+                  .carousel-item
+                    img.d-block.w-100(src='images/poster2.jpg', alt='Second slide', height='500')
+                    .carousel-caption.d-none.d-md-block
+                  .carousel-item
+                    img.d-block.w-100(src='images/poster3.jpg', alt='Third slide', height='500')
+                    .carousel-caption.d-none.d-md-block
+                a.carousel-control-prev(href='#carouselExampleFade', role='button', data-slide='prev')
+                  span.carousel-control-prev-icon(aria-hidden='true')
+                  span.sr-only Previous
+                a.carousel-control-next(href='#carouselExampleFade', role='button', data-slide='next')
+                  span.carousel-control-next-icon(aria-hidden='true')
+                  span.sr-only Next
+            .col-sm-6
+              #carouselExampleFade.carousel.slide.carousel-fade(data-ride='carousel')
+                .carousel-inner
+                  .carousel-item.active
+                    img.d-block.w-100(src='images/poster4.png', alt='First slide', height='500')
+                    .carousel-caption.d-none.d-md-block
+                  .carousel-item
+                    img.d-block.w-100(src='images/poster5.jpg', alt='Second slide', height='500')
+                    .carousel-caption.d-none.d-md-block 
+                  .carousel-item
+                    img.d-block.w-100(src='images/poster6.jpg', alt='Third slide', height='500')
+                    .carousel-caption.d-none.d-md-block
+                a.carousel-control-prev(href='#carouselExampleFade', role='button', data-slide='prev')
+                  span.carousel-control-prev-icon(aria-hidden='true')
+                  span.sr-only Previous
+                a.carousel-control-next(href='#carouselExampleFade', role='button', data-slide='next')
+                  span.carousel-control-next-icon(aria-hidden='true')
+                  span.sr-only Next
+          |
+          br
+          |
+          br
+          nav.navbar.navbar-expand-lg.navbar-light.bg-light
+            a.navbar-brand(href='#') 전체 공모전
+            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarTogglerDemo02', aria-controls='navbarTogglerDemo02', aria-expanded='false', aria-label='Toggle navigation')
+              span.navbar-toggler-icon
+            #navbarTogglerDemo02.collapse.navbar-collapse
+              ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+                li.nav-item.active
+                  a.nav-link(href='competitions?term=Accepting') 
+                    | 접수중
+                    span.sr-only (current)
+                li.nav-item
+                  a.nav-link(href='competitions?term=Deadline imminent')  마감 임박
+                li.nav-item
+                  a.nav-link.disabled(href='competitions?term=Deadlines')  마감
+              form.form-inline.my-2.my-lg-0(action='/competitions', method='GET')
+                input.form-control.mr-sm-2(type='text', name='term', placeholder='Search Competition', aria-label='Search', value=term)   
+                button.btn.btn-warning.my-2.my-sm-0(type='submit') Search 
+          |
+          br
+          |
+          br         
+          .row
+            each competition in competitions.docs
+              .col-lg-4.col-sm-8.portfolio-item
+                .card.border.mb-3(style='max-width: 18rem;')
+                  .card-header 
+                    p.card-text(style=' font: bold italic 1em/1.0em 돋움체;')= competition.status          
+                  .card-body
+                    |                     
+                    h6.card-title
+                      a.title(href=`/competitions/${competition.id}`  style="color: brown")= competition.title
+                    |                     
+                    p.card-text= competition.location
+                    hr
+                    each tag in competition.tags
+                      span.badge.badge-phill.badge-secondary= tag
+    
+          .button_loc  
+            .button
+              a.btn.pull-right.btn-success(href='/competitions') 공모전 더 보러가기
+          |
+          br
+          |
+          br
+          |
+          br
+          |

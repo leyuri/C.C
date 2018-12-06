@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   .container
-    h1.main-title Users
+    h1.main-title Manage Users
     if (currentUser.email == 'admin@gmail.com')
       table.table.table-hover
         thead
@@ -15,7 +15,7 @@ block content
           each user in users
             tr
               td
-                a(href=`/users/${user._id}`)= user.name
+                a(href=`/users/${user._id}` style='color: brown')= user.name
               td= user.email
               td= moment(user.createdAt).format('YYYY-MM-DD HH:mm:ss')
               td
@@ -32,5 +32,5 @@ block content
       br  
     
     else 
-      script.
-        alert('관리자만 열람 가능합니다');
+      //- script.
+      //-   alert('관리자만 열람 가능합니다');

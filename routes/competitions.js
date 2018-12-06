@@ -3,7 +3,7 @@ const Competition = require('../models/competition');
 const Answer = require('../models/answer'); 
 const User = require('../models/user');
 const catchErrors = require('../lib/async-error');
-const Favorite = require('../models/favorite');
+// const Favorite = require('../models/favorite');
 
 const router = express.Router();
 
@@ -22,12 +22,21 @@ router.get('/', catchErrors(async (req, res, next) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
 
+
+
   var query = {};
   const term = req.query.term;
   if (term) {
     query = {$or: [
       {title: {'$regex': term, '$options': 'i'}},
-      {content: {'$regex': term, '$options': 'i'}}
+      {content: {'$regex': term, '$options': 'i'}},
+      {field: {'$regex': term, '$options': 'i'}},
+      {sponsor: {'$regex': term, '$options': 'i'}},
+      {award: {'$regex': term, '$options': 'i'}},
+      {participant: {'$regex': term, '$options': 'i'}},
+      {status: {'$regex': term, '$options': 'i'}},
+      {location: {'$regex': term, '$options': 'i'}},
+      {tags: {'$regex': term, '$options': 'i'}}
     ]};
   }
   const competitions = await Competition.paginate(query, {
@@ -42,41 +51,71 @@ router.get('/new', needAuth, (req, res, next) => {
   res.render('competitions/new', {competition: {}});
 });
 
-// router.post('/:id/favorite', catchErrors(async (req, res, next) => {
-//   console.log('지나감1');
-//   const competition = await Competition.findById(req.params.id);
-//   if (!competition) {
-//     return next({status: 404, msg: 'Not exist competition'});
-//   }
-//   console.log('지나감2');
-//   console.log(req.user._id);
-//   console.log(competition._id);
-//   var favorite = await Favorite.findOne({author: req.user._id, competition: req.params.id});
-//   console.log('지나감3');
-//   if (!favorite) {
-//     Favorite.create({author: req.user._id, competition: competition._id})
-//   }
-//   console.log('지나감4');
-//   return res.json(competition);
+//공모전 관리
+router.get('/manage', needAuth, catchErrors(async (req, res, next) => {
+  const competitions = await Competition.find({});
+  res.render('competitions/manage', {competitions: competitions});
+  // res.redirect('competitions/manage');
+}));
+
+
+////////////////////////////////////////////////////////////
+//공모전 보관함
+router.get('/:id/favorite', needAuth, (req, res, next) => {
+  const competition = Competition.findById(req.params.id, function(err, competition) {
+    const user = User.findById(req.user.id, function(err, user) {
+      user.favorite.push(competition._id);
+      user.save(function(err) {
+        req.flash('success', 'Successfully Add My ');
+        res.redirect('back');
+      });
+    });
+  });
+});
+
+// button.a.btn.btn-outline-success(href=href=`/competitions/${competition._id}/favorite`)
+// i.fas.fa-heart
+// | &nbsp; favorite
+
+
+// button.a.btn.btn-outline-success(href=`/competitions/${competition._id}/favorite`)
+// i.fas.fa-heart
+// | &nbsp; favorite
+
+
+// router.delete('/:id', needAuth, catchErrors(async (req, res, next) => {
+//   await Competition.findOneAndRemove({_id: req.params.id});
+//   req.flash('success', 'Successfully deleted');
+//   res.redirect('/competitions');
 // }));
 
-// router.get('/:id/favorite', needAuth, (req, res, next) => {
-//   const competition = Competition.findById(req.params.id, function(err, competition) {
-//     const user = User.findById(req.user.id, function(err, user) {
-//       user.favorite.push(competition._id);
-//       user.save(function(err) {
-//         req.flash('success', 'Successfully Add My ');
-//         res.redirect('back');
-//       });
-//     });
-//   });
+// router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
+//   const competition = await Competition.findById(req.params.id);
+//   res.render('competitions/edit', {competition: competition});
+// }));
+
+// a.btn.btn-outline-danger.need-confirm-btn(href=`/competitions/${competition.id}?_method=delete`) Delete
+
+
+// router.delete('/:id', needAuth, catchErrors(async (req, res, next) => {
+//   await Competition.findOneAndRemove({_id: req.params.id});
+//   req.flash('success', 'Successfully deleted');
+//   res.redirect('/competitions');
+// }));
+
+// router.get('/manage', needAuth, (req, res, next) => {
+//   res.render('competitions/manage', {competition: {}});
 // });
+///////////////////////////////////////////////////////////
 
 
 router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
   const competition = await Competition.findById(req.params.id);
   res.render('competitions/edit', {competition: competition});
 }));
+
+
+
 
 router.get('/:id', catchErrors(async (req, res, next) => {
   const competition = await Competition.findById(req.params.id).populate('author');
@@ -106,30 +145,9 @@ router.put('/:id', catchErrors(async (req, res, next) => {
 router.delete('/:id', needAuth, catchErrors(async (req, res, next) => {
   await Competition.findOneAndRemove({_id: req.params.id});
   req.flash('success', 'Successfully deleted');
-  res.redirect('/competitions');
+  res.redirect('/competitions/manage');
 }));
 
-
-  // author: { type: Schema.Types.ObjectId, ref: 'User' },
-  // title: {type: String, trim: true, required: true},
-  // content: {type: String, trim: true, required: true},
-  // tags: [String],
-  // numLikes: {type: Number, default: 0},
-  // numAnswers: {type: Number, default: 0},
-  // numReads: {type: Number, default: 0},
-  // field: {type: String, trim: true, required: false},
-  // startTime: {type: String, trim: true, required: false},
-  // endTime: {type: String, trim: true, required: false},
-  // sponsor: {type: String, trim: true, required: false},
-  // award: {type: String, trim: true, required: false},
-  // image: { data: Buffer, contentType: String,required: false},
-  // createdAt: {type: Date, default: Date.now}
-  // participant: {type: String, trim: true, required: true},
-  // image: { data: Buffer, contentType: String },
-  // homepage: {type: String, trim: true, required: true},
-  // person: {type: String, trim: true, required: true},
-  // contact: {type: String, trim: true, required: true},
-  //create Compeition
 router.post('/', needAuth, catchErrors(async (req, res, next) => {
   const user = req.user;
   var competition = new Competition({
@@ -137,10 +155,12 @@ router.post('/', needAuth, catchErrors(async (req, res, next) => {
     author: user._id,
     content: req.body.content,
     field: req.body.field,
+    status: req.body.status,
     startTime: req.body.startTime,
     endTime: req.body.endTime,
     sponsor: req.body.sponsor,
 
+    location: req.body.location,
     location_map: req.body.location_map,
     location_latLng: req.body.location_latLng,
     lat: req.body.lat,
@@ -173,9 +193,12 @@ router.post('/', needAuth, catchErrors(async (req, res, next) => {
   competition.title = req.body.title;
   competition.content = req.body.content;
   competition.field=req.body.field;
+  competition.status=req.body.status;
   competition.startTime=req.body.startTime;
   competition.endTime=req.body.endTime;
   competition.sponsor=req.body.sponsor;
+
+  competition.location=req.body.location;
 
   competition.location_latLng=req.body.location_latLng;
   competition.lat=req.body.lat;

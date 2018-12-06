@@ -184,25 +184,25 @@
 
         
 
-//- script.
+script.
 
-//-   $('#summernote').summernote({
-//-   placeholder: 'Please enter your content.',
-//-   tabsize: 2,
-//-   height: 100
-//-   });
+  $('#summernote').summernote({
+  placeholder: 'Please enter your content.',
+  tabsize: 2,
+  height: 100
+  });
   
-//-   $.extend($.summernote.plugins, {
-//-       'myenter': function (context) {
-//-           this.events = {
-//-               'summernote.enter': function (we, event) {
-//-                   // custom enter key
-//-                   pasteHtmlAtCaret($.summernote.dom.blank);
-//-                   event.preventDefault()
-//-               }
-//-           }
-//-       },
-//-   })
+  $.extend($.summernote.plugins, {
+      'myenter': function (context) {
+          this.events = {
+              'summernote.enter': function (we, event) {
+                  // custom enter key
+                  pasteHtmlAtCaret($.summernote.dom.blank);
+                  event.preventDefault()
+              }
+          }
+      },
+  })
 
 //-         //스팸..
 //- script.

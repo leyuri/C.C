@@ -1,14 +1,6 @@
 
 # [2018년 2학기 웹프로그래밍 Term Project]
-###https://floating-brook-81932.herokuapp.com/
-
-공모전 정보 공유 서비스 제작
-
-공모전 관련 정보를 등록하고, 검색 확인할 수 있는 시스템을 개발하시오. 개발 시스템은 다음과 같은 기능을 제공
-
-하여야 한다.
-
-참고 사이트: 위비티 https://www.wevity.com/
+https://floating-brook-81932.herokuapp.com/
 
 ## 1.사용자
 

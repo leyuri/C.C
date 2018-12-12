@@ -37,24 +37,6 @@ router.post('/competitions/:id/favorite', catchErrors(async (req, res, next) => 
   return res.json(competition);
 }));
 
-// // favorite for Competition
-// router.post('/competitions/:id/report', catchErrors(async (req, res, next) => {
-//   const competition = await Competition.findById(req.params.id);
-//   if (!competition) {
-//     return next({status: 404, msg: 'Not exist competition'});
-//   }
-//   var report = await Report.findOne({author: req.user._id, competition: competition._id});
-//   if (!report) {
-//     // competition.numLikes++;
-//     await Promise.all([
-//       competition.save(),
-//       Favorite.create({author: req.user._id, competition: competition._id})
-//     ]);
-//   }
-//   return res.json(competition);
-// }));
-
-
 
 // Like for Competition
 router.post('/competitions/:id/like', catchErrors(async (req, res, next) => {

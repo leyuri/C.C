@@ -91,16 +91,23 @@ router.get('/:id/report', (req, res, next) => {
 // }));
 
 
+// router.get('/:id', catchErrors(async (req, res, next) => {
+//   const competition = await Competition.findById(req.params.id).populate('author');
+
+//   const reports = await Report.find({competition: competition.id}).populate('author');
+//   await competition.save();
+//   res.render('competitions/show', {competition: competition,  reports: reports});
+// }));
+
 
 router.get('/:id', catchErrors(async (req, res, next) => {
   const competition = await Competition.findById(req.params.id).populate('author');
-
+  const answers = await Answer.find({competition: competition.id}).populate('author');
+  competition.numReads++;    // TODO: 동일한 사람이 본 경우에 Read가 증가하지 않도록???
   const reports = await Report.find({competition: competition.id}).populate('author');
   await competition.save();
-  res.render('competitions/show', {competition: competition,  reports: reports});
+  res.render('competitions/show', {competition: competition, answers: answers, reports: reports});
 }));
-
-
 
 router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
   const competition = await Competition.findById(req.params.id);
@@ -108,16 +115,6 @@ router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
 }));
 
 
-
-router.get('/:id', catchErrors(async (req, res, next) => {
-  const competition = await Competition.findById(req.params.id).populate('author');
-  
-  const answers = await Answer.find({competition: competition.id}).populate('author');
-  competition.numReads++;    // TODO: 동일한 사람이 본 경우에 Read가 증가하지 않도록???
-  const reports = await Report.find({competition: competition.id}).populate('author');
-  await competition.save();
-  res.render('competitions/show', {competition: competition, answers: answers, reports: reports});
-}));
 
 router.put('/:id', catchErrors(async (req, res, next) => {
   const competition = await Competition.findById(req.params.id);

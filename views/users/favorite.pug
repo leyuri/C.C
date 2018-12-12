@@ -1,58 +1,18 @@
 extends ../layout
 include ../includes/_paginate
 
+
 block content
   .container
-    h1.main-title Registered Competitions 
-
-
-
+    h1.main-title My favorite 
     table.table.table-hover
       thead
         tr
           th Title
-          th Status
+          th Field
           th
-          //- th Start Time
-          //- th Participant
- 
       tbody
-        each competition in competitions
+        each ff in favorite
           tr
-            td 
-              a(href=`/competitions/${competition._id}`)= competition.title
-              td= competition.status
-              //- td= competition.startTime
-              //- td= competition.participantN
-              td
-                a.btn.btn-sm.btn-outline-secondary(href=`/competitions/${competition._id}/edit`) 
-                  | #[i.fa.fa-pencil] Edit
-                | 
-                a.btn.btn-sm.btn-outline-danger(href=`/competitions/${competition._id}?_method=DELETE`)
-                  | #[i.fa.fa-trash] Delete
-                //- |
-                //- |
-                //- a.btn.btn-sm.btn-outline-dark(href=`/competitions/${competition.id}/participantL`) Participate Lists
-                //- |
-                //- |
-                //- a.btn.btn-sm.btn-outline-dark(href=`/competitions/${competition.id}/survey`) Survey Result
-    br
-
-
-        //- h3
-    //-   | My Favorite
-    //- br
-    //- table.table.table-hover
-    //-   thead
-    //-     tr
-    //-       th Title
-    //-       th Location
-    //-       th Start Time
-
-    //-   tbody
-    //-     each favorite in favorites
-    //-       tr
-    //-         td 
-    //-           a(href=`/competitions/${favorite._id}`)= favorite.title
-    //-           td= favorite.location
-    //-           td= favorite.startTime
+            td(style='color: brown')= ff.competition.title
+            td= ff.competition.field

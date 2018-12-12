@@ -164,29 +164,29 @@ a:hover {
   font-size: 1rem;
   color: #bbb; }
 
-.competition {
+.competition, .reports {
   line-height: 160%;
   margin-bottom: 1em; }
-  .competition .title {
+  .competition .title, .reports .title {
     font-size: 1.3rem;
     color: brown; }
-  .competition .content {
+  .competition .content, .reports .content {
     color: #aaa; }
-  .competition .content {
+  .competition .content, .reports .content {
     color: #aaa; }
-  .competition .content {
+  .competition .content, .reports .content {
     color: #aaa; }
-  .competition .content {
+  .competition .content, .reports .content {
     color: #aaa; }
-  .competition .content {
+  .competition .content, .reports .content {
     color: #aaa; }
-  .competition .content {
+  .competition .content, .reports .content {
     color: #aaa; }
-  .competition .person {
+  .competition .person, .reports .person {
     color: #aaa; }
-  .competition .contact {
+  .competition .contact, .reports .contact {
     color: #aaa; }
-  .competition .tags {
+  .competition .tags, .reports .tags {
     margin: 0.5em 0; }
 
 .author {
@@ -229,33 +229,33 @@ a:hover {
     margin-bottom: 0.5em;
     color: #bbb; }
 
-.competition-like-btn, .answer-like-btn {
+.competition-like-btn, .competition-unlike-btn, .answer-like-btn, .answer-unlike-btn {
   cursor: pointer; }
-  .competition-like-btn .for-loading, .answer-like-btn .for-loading {
+  .competition-like-btn .for-loading, .competition-unlike-btn .for-loading, .answer-like-btn .for-loading, .answer-unlike-btn .for-loading {
     display: none; }
-  .competition-like-btn.loading, .answer-like-btn.loading {
+  .competition-like-btn.loading, .competition-unlike-btn.loading, .answer-like-btn.loading, .answer-unlike-btn.loading {
     filter: opacity(30%);
     cursor: wait; }
-    .competition-like-btn.loading > span, .answer-like-btn.loading > span {
+    .competition-like-btn.loading > span, .competition-unlike-btn.loading > span, .answer-like-btn.loading > span, .answer-unlike-btn.loading > span {
       display: none; }
-    .competition-like-btn.loading .for-loading, .answer-like-btn.loading .for-loading {
+    .competition-like-btn.loading .for-loading, .competition-unlike-btn.loading .for-loading, .answer-like-btn.loading .for-loading, .answer-unlike-btn.loading .for-loading {
       display: inline-block; }
-  .competition-like-btn.disabled, .answer-like-btn.disabled {
+  .competition-like-btn.disabled, .competition-unlike-btn.disabled, .answer-like-btn.disabled, .answer-unlike-btn.disabled {
     color: #bbb;
     cursor: default; }
 
-.competition-like-btn, .answer-unlike-btn {
+.competition-like-btn, .competition-unlike-btn, .answer-unlike-btn, .answer-unlike-btn {
   cursor: pointer; }
-  .competition-like-btn .for-loading, .answer-unlike-btn .for-loading {
+  .competition-like-btn .for-loading, .competition-unlike-btn .for-loading, .answer-unlike-btn .for-loading, .answer-unlike-btn .for-loading {
     display: none; }
-  .competition-like-btn.loading, .answer-unlike-btn.loading {
+  .competition-like-btn.loading, .competition-unlike-btn.loading, .answer-unlike-btn.loading, .answer-unlike-btn.loading {
     filter: opacity(30%);
     cursor: wait; }
-    .competition-like-btn.loading > span, .answer-unlike-btn.loading > span {
+    .competition-like-btn.loading > span, .competition-unlike-btn.loading > span, .answer-unlike-btn.loading > span, .answer-unlike-btn.loading > span {
       display: none; }
-    .competition-like-btn.loading .for-loading, .answer-unlike-btn.loading .for-loading {
+    .competition-like-btn.loading .for-loading, .competition-unlike-btn.loading .for-loading, .answer-unlike-btn.loading .for-loading, .answer-unlike-btn.loading .for-loading {
       display: inline-block; }
-  .competition-like-btn.disabled, .answer-unlike-btn.disabled {
+  .competition-like-btn.disabled, .competition-unlike-btn.disabled, .answer-unlike-btn.disabled, .answer-unlike-btn.disabled {
     color: #bbb;
     cursor: default; }
 

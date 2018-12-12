@@ -2,6 +2,7 @@ var cool = require('cool-ascii-faces');
 var express = require('express'),
 User = require('../models/user');
 const competition = require('../models/competition');
+const report = require('../models/report');
 const catchErrors = require('../lib/async-error');
 const router = express.Router();
 const PORT = process.env.PORT || 5000
@@ -33,6 +34,7 @@ router.get('/', catchErrors(async (req, res, next) => {  //await를 사용하기
       {sponsor: {'$regex': term, '$options': 'i'}},
       {award: {'$regex': term, '$options': 'i'}},
       {participant: {'$regex': term, '$options': 'i'}},
+      {reason: {'$regex': term, '$options': 'i'}},
       {tags: {'$regex': term, '$options': 'i'}}
     ]};
   }

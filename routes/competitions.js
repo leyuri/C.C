@@ -2,8 +2,9 @@ const express = require('express');
 const Competition = require('../models/competition');
 const Answer = require('../models/answer'); 
 const User = require('../models/user');
+const Report = require('../models/report');
+const Favorite = require('../models/favorite');
 const catchErrors = require('../lib/async-error');
-// const Favorite = require('../models/favorite');
 
 const router = express.Router();
 
@@ -51,62 +52,54 @@ router.get('/new', needAuth, (req, res, next) => {
   res.render('competitions/new', {competition: {}});
 });
 
-//공모전 관리
+//공모전 관리(삭제)
 router.get('/manage', needAuth, catchErrors(async (req, res, next) => {
   const competitions = await Competition.find({});
-  res.render('competitions/manage', {competitions: competitions});
+  // res.render('competitions/manage', {competitions: competitions});
+  const reports = Report.find({competition: competitions.id}, function(err, reports) {
+    res.render('competitions/manage', { competitions: competitions, reports: reports});
+  });
   // res.redirect('competitions/manage');
 }));
 
 
-////////////////////////////////////////////////////////////
-//공모전 보관함
-router.get('/:id/favorite', needAuth, (req, res, next) => {
-  const competition = Competition.findById(req.params.id, function(err, competition) {
-    const user = User.findById(req.user.id, function(err, user) {
-      user.favorite.push(competition._id);
-      user.save(function(err) {
-        req.flash('success', 'Successfully Add My ');
-        res.redirect('back');
-      });
-    });
-  });
-});
 
-// button.a.btn.btn-outline-success(href=href=`/competitions/${competition._id}/favorite`)
-// i.fas.fa-heart
-// | &nbsp; favorite
+router.get('/:id/report', (req, res, next) => {
+  var competitions = Competition.findById(req.params.id, function(err, competitions) {
+    //console.log(event.title);
+    const reports = Report.findById(req.reports.id, function(err, reports) {
+      res.render('competitions/report', { competitions: competitions, reports: reports});
+        // var users = User.find({_id: events.participantL}, function(err, users) {
+        // //  console.log(event.participantL);
+        //   res.render('competitions/report', {users: users, events: events});
+        // })
+      })
+  })
+})
 
-
-// button.a.btn.btn-outline-success(href=`/competitions/${competition._id}/favorite`)
-// i.fas.fa-heart
-// | &nbsp; favorite
+//공모전 신고 관리(삭제)
+//공모전의 id + 사용자 id + 공모전 내용이 들어가야 함
+// router.get('/report', needAuth, catchErrors(async (req, res, next) => {
+//   const competitions = await Competition.find({}, function(err,competitions){
 
 
-// router.delete('/:id', needAuth, catchErrors(async (req, res, next) => {
-//   await Competition.findOneAndRemove({_id: req.params.id});
-//   req.flash('success', 'Successfully deleted');
-//   res.redirect('/competitions');
+//   });
+//   const reports = Report.find({competition: competitions.id}, function(err, reports) {
+//     res.render('competitions/report', { competitions: competitions, reports: reports});
+//   });
+//   // res.redirect('competitions/manage');
 // }));
 
-// router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
-//   const competition = await Competition.findById(req.params.id);
-//   res.render('competitions/edit', {competition: competition});
-// }));
-
-// a.btn.btn-outline-danger.need-confirm-btn(href=`/competitions/${competition.id}?_method=delete`) Delete
 
 
-// router.delete('/:id', needAuth, catchErrors(async (req, res, next) => {
-//   await Competition.findOneAndRemove({_id: req.params.id});
-//   req.flash('success', 'Successfully deleted');
-//   res.redirect('/competitions');
-// }));
+router.get('/:id', catchErrors(async (req, res, next) => {
+  const competition = await Competition.findById(req.params.id).populate('author');
 
-// router.get('/manage', needAuth, (req, res, next) => {
-//   res.render('competitions/manage', {competition: {}});
-// });
-///////////////////////////////////////////////////////////
+  const reports = await Report.find({competition: competition.id}).populate('author');
+  await competition.save();
+  res.render('competitions/show', {competition: competition,  reports: reports});
+}));
+
 
 
 router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
@@ -116,14 +109,14 @@ router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
 
 
 
-
 router.get('/:id', catchErrors(async (req, res, next) => {
   const competition = await Competition.findById(req.params.id).populate('author');
+  
   const answers = await Answer.find({competition: competition.id}).populate('author');
   competition.numReads++;    // TODO: 동일한 사람이 본 경우에 Read가 증가하지 않도록???
-
+  const reports = await Report.find({competition: competition.id}).populate('author');
   await competition.save();
-  res.render('competitions/show', {competition: competition, answers: answers});
+  res.render('competitions/show', {competition: competition, answers: answers, reports: reports});
 }));
 
 router.put('/:id', catchErrors(async (req, res, next) => {
@@ -159,14 +152,11 @@ router.post('/', needAuth, catchErrors(async (req, res, next) => {
     startTime: req.body.startTime,
     endTime: req.body.endTime,
     sponsor: req.body.sponsor,
-
     location: req.body.location,
     location_map: req.body.location_map,
     location_latLng: req.body.location_latLng,
     lat: req.body.lat,
     lng: req.body.lng,
-
-
     award: req.body.award,
     image: req.body.image,
     participant:req.body.participant,
@@ -219,6 +209,7 @@ router.post('/', needAuth, catchErrors(async (req, res, next) => {
 }));
 
 
+
 router.post('/:id/answers', needAuth, catchErrors(async (req, res, next) => {
   const user = req.user;
   const competition = await Competition.findById(req.params.id);
@@ -235,11 +226,32 @@ router.post('/:id/answers', needAuth, catchErrors(async (req, res, next) => {
   });
   await answer.save();
   competition.numAnswers++;
+  // competition.numAnswers++;
   await competition.save();
 
   req.flash('success', 'Successfully answered');
   res.redirect(`/competitions/${req.params.id}`);
 }));
+
+// 신고
+router.post('/:id/report', needAuth, catchErrors(async (req, res, next) => {
+  const user = req.user;
+  const competition = await Competition.findById(req.params.id);
+  if (!competition) {
+    req.flash('danger', 'Not exist competition');
+    return res.redirect('back');
+  }
+  var report = new Report({
+    author: user._id,
+    competition: competition._id,
+    reason: req.body.reason
+  });
+  await report.save();
+  await competition.save();
+  req.flash('success', 'Successfully registered');
+  res.redirect(`/competitions/${req.params.id}`);
+}));
+
 
 
 

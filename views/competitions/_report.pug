@@ -1,0 +1,92 @@
+.modal.fade#report(tabindex='-3', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+  .modal-dialog(role='document')
+      .modal-content
+          .modal-header
+              h3#exampleModalLabel.modal-title 신고하기
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') ×
+          .modal-body
+            | 공모전 제목: 
+            h5.m.title(stype = 'color:black')= competition.title
+            form(action=`/competitions/${competition.id}/report`, method='POST')
+                .form-group
+                    label(for='reason') 신고 사유:
+                    input#reason.form-control(type='text', name='reason')
+                button.btn.btn-outline-secondary(type='button', data-dismiss='modal', aria-label='Close') 취소
+                button.btn.btn-warning(type='submit' onclick= "alert('공모전 글이 신고되었습니다.')") 신고하기
+
+
+//- .form-group
+//-     label.col-form-label(for='recipient-content') 공모전 이름:
+//-     h5.m.title(stype = 'color:black')= competition.title
+//- .form-group
+//-     label.col-form-label(for='reason') 신고 사유:
+//-     input#reason.form-control(type='text', name='reason')
+//-         //- .form-check
+//-         //-     input#exampleRadios1.form-check-input(type='radio', name='inappropriateness', value='inappropriateness', checked='')
+//-         //-     label.form-check-label(for='exampleRadios1')
+//-         //-     | 부적절한 홍보 게시물
+//-         //- .form-check
+//-         //-     input#exampleRadios2.form-check-input(type='radio', name='Lewdness', value='Lewdness')
+//-         //-     label.form-check-label(for='exampleRadios2')
+//-         //-     | 음란성
+//-         //- .form-check
+//-         //-     input#exampleRadios3.form-check-input(type='radio', name='abuse', value='abuse', )
+//-         //-     label.form-check-label(for='exampleRadios3')
+//-         //-     | 특정인 대상의 비망/욕설
+//-         //- .form-check
+//-         //-     input#exampleRadios3.form-check-input(type='radio', name='Copyright ', value='Copyright', )
+//-         //-     //- disabled=''
+//-         //-     label.form-check-label(for='exampleRadios3')
+//-         //-     | 저작권 침해
+
+
+
+
+//-                   .form-group
+//-                       label(for='works_at') 소속
+//-                       input#worksAt.form-control(type='text', name='works_at')
+//-                   .form-group
+//-                       label(for='reason') 참가 이유
+//-                       input#reason.form-control(type='text', name='reason')
+
+
+          //- #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+          //-   .modal-dialog(role='document')
+          //-     .modal-content
+          //-       .modal-header
+          //-         h5#exampleModalLabel.modal-title 신고하기
+          //-         button.close(type='button', data-dismiss='modal', aria-label='Close')
+          //-           span(aria-hidden='true') ×
+          //-       .modal-body
+          //-         form(action=`/competitions/${competition.id}/report`, method="POST")
+          //-           include _report
+                    //- .form-group
+                    //-   label.col-form-label(for='recipient-content') 공모전 이름:
+                    //-   h5.m.title(stype = 'color:black')= competition.title
+                    //- .form-group
+                    //-   label.col-form-label(for='content') 신고 사유:
+                    //-     |
+                    //-     br
+                    //-     .form-check
+                    //-       input#exampleRadios1.form-check-input(type='radio', name='inappropriateness', value='inappropriateness', checked='')
+                    //-       label.form-check-label(for='exampleRadios1')
+                    //-         | 부적절한 홍보 게시물
+                    //-     .form-check
+                    //-       input#exampleRadios2.form-check-input(type='radio', name='Lewdness', value='Lewdness')
+                    //-       label.form-check-label(for='exampleRadios2')
+                    //-         | 음란성
+                    //-     .form-check
+                    //-       input#exampleRadios3.form-check-input(type='radio', name='abuse', value='abuse', )
+                    //-       label.form-check-label(for='exampleRadios3')
+                    //-         | 특정인 대상의 비망/욕설
+                    //-     .form-check
+                    //-       input#exampleRadios3.form-check-input(type='radio', name='Copyright ', value='Copyright', )
+                    //-       //- disabled=''
+                    //-       label.form-check-label(for='exampleRadios3')
+                    //-         | 저작권 침해
+                .modal-footer
+                  button.btn.btn-secondary(type='button', data-dismiss='modal') 취소
+                  button.a.btn.btn-primary(type='submit' value='Submit' onclick= "alert('공모전 글이 신고되었습니다.')") 신고
+
+      

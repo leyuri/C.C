@@ -25,7 +25,7 @@
 - [X] 기본정보: 이름, 주최사, 분야, 응시대상, 접수기간, 공모요강, 담당자, 연락처
 - [X] 기타정보: 참고 사이트를 참조하여 다양한 추가 정보를 적절한 UI를 통해 입력받는다.
 - [X] 등록자는 공모전 정보를 수정/삭제할 수 있다.
-- [ ] (option) 신고기능: 적절하지 못한 공모전 정보/공모전 댓글에 대한 신고를 할 수 있고, 관리자는 신고 내역을 확인/관리할 수 있다.
+- [X] (option) 신고기능: 적절하지 못한 공모전 정보/공모전 댓글에 대한 신고를 할 수 있고, 관리자는 신고 내역을 확인/관리할 수 있다.
 - [X] (option) reCAPTCHA를 사용하여 스팸을 막는다. (https://www.google.com/recaptcha/intro/v3beta.html)
 - [ ] (option) 공모전 포스터를 이미지, pdf 등을 등록할 수 있다.
 - [X] (option) 상세 설명을 WYSIWYG에디터를 이용하여 입력받는다. (TinyMCE, summernote 등 활용 가능 https://github.com/cheeaun/mooeditable/wiki/Javascript-WYSIWYG-editors)
@@ -38,11 +38,11 @@
 - [X] 공모전의 목록을 조회할 수 있다.
 - [X] 공모전의 상세 정보를 조회할 수 있다.
 - [X] (option) 댓글 기능: 사용자는 공모전에 대한 댓글을 남길 수 있다.
-- [ ] (option) 추천배너: 추천 공모전 정보를 사용자에게 보여준다.
+- [X] (option) 추천배너: 추천 공모전 정보를 사용자에게 보여준다.
 - [X] (option) 분야별/상태(접수중/마감임박/마감 등)별 공모전 목록을 조회할 수 있다.
 - [X] (option) 검색: 키워드를 통해 공모전을 검색할 수 있다.
 - [X] (option) 추천 기능: 공모전 정보, 댓글 등에 추천(좋아요/싫어요)을 할 수 있다.
-- [ ] (option) Favorite 기능: 공모전 정보를 Favorite에 추가. 자신의 Favorite 목록 확인 가능
+- [X] (option) Favorite 기능: 공모전 정보를 Favorite에 추가. 자신의 Favorite 목록 확인 가능
 - [X] (option) 공유기능: 공모전 정보를 페이스북, 트위터 등으로 공유할 수 있다.
 
 ## 4.  기타

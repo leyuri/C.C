@@ -44,7 +44,7 @@
 // | 연락처
 // .smallText!= competition.contact
 
-.competition {
+.competition, .reports{
   line-height: 160%;
   margin-bottom: 1em;
   .title {
@@ -131,7 +131,7 @@
   }
 }
 
-.competition-like-btn, .answer-like-btn {
+.competition-like-btn, .competition-unlike-btn, .answer-like-btn, .answer-unlike-btn {
   .for-loading {display: none;}
   cursor: pointer; 
 
@@ -148,7 +148,7 @@
   }
 }
 
-.competition-like-btn, .answer-unlike-btn {
+.competition-like-btn, .competition-unlike-btn, .answer-unlike-btn, .answer-unlike-btn {
   .for-loading {display: none;}
   cursor: pointer; 
 

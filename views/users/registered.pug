@@ -1,39 +1,27 @@
+
 extends ../layout
 include ../includes/_paginate
 
 block content
   .container
     h1.main-title Registered Competitions 
-
-
-
     table.table.table-hover
       thead
         tr
           th Title
           th Status
           th
-          //- th Start Time
-          //- th Participant
- 
       tbody
         each competition in competitions
           tr
             td 
               a(href=`/competitions/${competition._id}` style='color: brown')= competition.title
               td= competition.status
-              //- td= competition.startTime
-              //- td= competition.participantN
               td
+                //- a.btn.btn-sm.btn-outline-secondary(href=`/competitions/${competition._id}/edit`) 
+                //-   | #[i.fa.fa-pencil] Edit
                 a.btn.btn-sm.btn-outline-secondary(href=`/competitions/${competition._id}/edit`) 
-                  | #[i.fa.fa-pencil] Edit
+                  | #[i.fas.fa-edit] Edit
                 | 
                 a.btn.btn-sm.btn-outline-danger(href=`/competitions/${competition._id}?_method=DELETE`)
                   | #[i.fa.fa-trash] Delete
-                //- |
-                //- |
-                //- a.btn.btn-sm.btn-outline-dark(href=`/competitions/${competition.id}/participantL`) Participate Lists
-                //- |
-                //- |
-                //- a.btn.btn-sm.btn-outline-dark(href=`/competitions/${competition.id}/survey`) Survey Result
-    br

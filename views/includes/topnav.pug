@@ -57,14 +57,19 @@
                 i.fas.fa-unlock-alt
                 | &nbsp; admin
               .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
-                a.dropdown-item(href="/competitions/manage")  
+                a.dropdown-item(href="/competitions/manage") 
                   i.fas.fa-check-circle
-                  | &nbsp; 공모전 관리
+                  | &nbsp; Manage Competitions
                 a.dropdown-item(href="/users") 
                   i.fas.fa-users
-                  | &nbsp; 사용자 관리
-                a.dropdown-item(href='#') 
+                  | &nbsp; Manage Users
+                a.dropdown-item(href=`/competitions/report`)
                   i.fas.fa-fire-extinguisher
-                  | &nbsp; 신고 관리
+                  | &nbsp; Manage Reports
   
 
+
+
+
+
+//- a.btn.btn-outline-dark(href=`/competitions/${competition.id}/report`) Participant Survey Result

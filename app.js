@@ -8,7 +8,7 @@ var sassMiddleware = require('node-sass-middleware');
 var session = require('express-session');
 var methodOverride = require('method-override');
 var flash = require('connect-flash');
-var mongoose   = require('mongoose');
+var mongoose   = require('mongoose'); //Nodejs용 MonogoDB ODM툴, 스키마 지원
 var passport = require('passport');
 
 var index = require('./routes/index');
@@ -19,16 +19,14 @@ var passportConfig = require('./lib/passport-config');
 
 var app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 if (app.get('env') === 'development') {
   app.locals.pretty = true;
 }
 
-// Pug의 local에 moment라이브러리와 querystring 라이브러리를 사용할 수 있도록.
-app.locals.moment = require('moment');
-//이미 모듈을 받아서 참조를 해놨다. 따라서 pug안에서 참조하여 사용할 수 있다. 
+
+app.locals.moment = require('moment'); 
 app.locals.querystring = require('querystring');
 
 //=======================================================
@@ -92,9 +90,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 passportConfig(passport);
 
-
-
-
 // pug의 local에 현재 사용자 정보와 flash 메시지를 전달하자.
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;  // passport는 req.user로 user정보 전달
@@ -108,29 +103,6 @@ app.use('/users', users);
 app.use('/competitions', competitions);
 require('./routes/auth')(app, passport);
 app.use('/api', require('./routes/api'));
-
-
-// app.post('/competitions',function(req,res){
-//   // g-recaptcha-response is the key that browser will generate upon form submit.
-//   // if its blank or null means user has not selected the captcha, so return the error.
-//   if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-//     return res.json({"responseCode" : 1,"responseDesc" : "Please select captcha"});
-//   }
-//   // Put your secret key here.
-//   var secretKey = "6LcaTn4UAAAAAJs8kYbTF0tqxGSxozuaLSizqNbo";
-//   // req.connection.remoteAddress will provide IP address of connected user.
-//   var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + "6LcaTn4UAAAAALOzYepYHSNWVTDQzrdzqI0gNOsR" + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
-//   // Hitting GET request to the URL, Google will respond with success or error scenario.
-//   request(verificationUrl,function(error,response,body) {
-//     body = JSON.parse(body);
-//     // Success will be true or false depending upon captcha validation.
-//     if(body.success !== undefined && !body.success) {
-//       return res.json({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
-//     }
-//     res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
-//   });
-// });
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -149,7 +121,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
 
 module.exports = app;

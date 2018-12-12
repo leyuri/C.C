@@ -19,6 +19,17 @@ block content
       .form-group
         label(for='password_confirmation') Password Confirmation
         input.form-control(type='password', id='password_confirmation', name='password_confirmation', placeholder='Password Confirmation')
+      .form-group
+        label(for='address') address
+        input.form-control(type='text', id='address', name='address', placeholder='address', value=user.address)
+      .form-group
+        label(for='sex') sex
+        input.form-control(type='text', id='sex', name='sex', placeholder='sex', value=user.sex)
+      .form-group
+        label(for='birthday') birthday
+        input.form-control(type='text', id='birthday', name='birthday', placeholder='birthday' value=user.birthday)
+
+
       a.btn.btn-outline-secondary(href='javascript:window.history.back();') Back 
       | 
       button.btn.btn-outline-warning(type='submit') Update

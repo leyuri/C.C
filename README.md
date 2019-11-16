@@ -4,9 +4,9 @@
 
 ### development environment
 
-pug + scss + bootstrap4 + jQuery + ajax
-node.js + express.js + mongoDB(mongoose)
-facebook login, kakao login
+- pug + scss + bootstrap4 + jQuery + ajax
+- node.js + express.js + mongoDB(mongoose)
+- facebook login, kakao login
 
 ### Screenshots
 

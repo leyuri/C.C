@@ -1,4 +1,4 @@
-# Contest-collection
+# Competition-collection
 
 공모전 모음 사이트 https://floating-brook-81932.herokuapp.com/
 

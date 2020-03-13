@@ -8,7 +8,7 @@
 - node.js + express.js
 - mongoDB
 
-### Implementation function
+### Features
 #### 1.사용자
 - [X] 회원가입, 로그인
 - [X] 사용자는 본인이 공모전 정보를 등록할 수 있다
